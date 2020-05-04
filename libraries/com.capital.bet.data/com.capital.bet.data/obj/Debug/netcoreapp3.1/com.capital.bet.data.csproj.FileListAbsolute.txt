@@ -1,0 +1,12 @@
+C:\Users\mjoha\source\repos\com.capital.bet\capitalbet\libraries\com.capital.bet.data\com.capital.bet.data\bin\Debug\netcoreapp3.1\com.capital.bet.data.deps.json
+C:\Users\mjoha\source\repos\com.capital.bet\capitalbet\libraries\com.capital.bet.data\com.capital.bet.data\bin\Debug\netcoreapp3.1\com.capital.bet.data.dll
+C:\Users\mjoha\source\repos\com.capital.bet\capitalbet\libraries\com.capital.bet.data\com.capital.bet.data\obj\Debug\netcoreapp3.1\com.capital.bet.data.AssemblyInfoInputs.cache
+C:\Users\mjoha\source\repos\com.capital.bet\capitalbet\libraries\com.capital.bet.data\com.capital.bet.data\obj\Debug\netcoreapp3.1\com.capital.bet.data.AssemblyInfo.cs
+C:\Users\mjoha\source\repos\com.capital.bet\capitalbet\libraries\com.capital.bet.data\com.capital.bet.data\obj\Debug\netcoreapp3.1\com.capital.bet.data.csproj.CoreCompileInputs.cache
+C:\Users\mjoha\source\repos\com.capital.bet\capitalbet\libraries\com.capital.bet.data\com.capital.bet.data\bin\Debug\netcoreapp3.1\com.capital.bet.data.runtimeconfig.json
+C:\Users\mjoha\source\repos\com.capital.bet\capitalbet\libraries\com.capital.bet.data\com.capital.bet.data\bin\Debug\netcoreapp3.1\com.capital.bet.data.runtimeconfig.dev.json
+C:\Users\mjoha\source\repos\com.capital.bet\capitalbet\libraries\com.capital.bet.data\com.capital.bet.data\bin\Debug\netcoreapp3.1\com.capital.bet.data.pdb
+C:\Users\mjoha\source\repos\com.capital.bet\capitalbet\libraries\com.capital.bet.data\com.capital.bet.data\obj\Debug\netcoreapp3.1\com.capital.bet.data.dll
+C:\Users\mjoha\source\repos\com.capital.bet\capitalbet\libraries\com.capital.bet.data\com.capital.bet.data\obj\Debug\netcoreapp3.1\com.capital.bet.data.pdb
+C:\Users\mjoha\source\repos\com.capital.bet\capitalbet\libraries\com.capital.bet.data\com.capital.bet.data\obj\Debug\netcoreapp3.1\com.capital.bet.data.genruntimeconfig.cache
+C:\Users\mjoha\source\repos\com.capital.bet\capitalbet\libraries\com.capital.bet.data\com.capital.bet.data\obj\Debug\netcoreapp3.1\com.capital.bet.data.csprojAssemblyReference.cache
