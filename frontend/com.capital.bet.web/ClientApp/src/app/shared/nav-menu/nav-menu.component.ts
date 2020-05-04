@@ -53,7 +53,7 @@ export class NavMenuComponent implements OnInit, OnDestroy {
       keyboard: true,
       focus: true,
       show: false,
-      ignoreBackdropClick: false,
+      ignoreBackdropClick: true,
       class: 'modal-side modal-top-right',
       containerClass: 'right',
       animated: true

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "NJcjohADl3N2IDctL+DVaMxz47En0WvhWMqHWBFBgH5OU/4lKpVV4AB3oM93L9ZzkLjRhPz7NxQD0Q/NNXkhfA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\mjoha\\source\\repos\\com.capital.bet\\capitalbet\\libraries\\com.capital.bet.lib\\com.capital.bet.lib.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mjoha\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

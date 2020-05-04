@@ -312,6 +312,158 @@ namespace com.capital.bet.web.Migrations
                     b.HasKey("StockId");
 
                     b.ToTable("Stocks");
+
+                    b.HasData(
+                        new
+                        {
+                            StockId = "EUR_USD",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "EUR/USD",
+                            Enabled = true,
+                            Name = "EUR/USD",
+                            PayOutRate = 0.6m,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            StockId = "GBP_USD",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "GBP/USD",
+                            Enabled = true,
+                            Name = "GBP/USD",
+                            PayOutRate = 0.6m,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            StockId = "EUR_JPY",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "EUR/JPY",
+                            Enabled = true,
+                            Name = "EUR/JPY",
+                            PayOutRate = 0.6m,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            StockId = "USD_JPY",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "USD/JPY",
+                            Enabled = true,
+                            Name = "USD/JPY",
+                            PayOutRate = 0.6m,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            StockId = "AUD_USD",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "AUD/USD",
+                            Enabled = true,
+                            Name = "AUD/USD",
+                            PayOutRate = 0.6m,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            StockId = "USD_CAD",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "USD/CAD",
+                            Enabled = true,
+                            Name = "USD/CAD",
+                            PayOutRate = 0.6m,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            StockId = "EUR_GBP",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "EUR/GBP",
+                            Enabled = true,
+                            Name = "EUR/GBP",
+                            PayOutRate = 0.6m,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            StockId = "BTC_USD",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "BTC/USD",
+                            Enabled = true,
+                            Name = "BTC/USD",
+                            PayOutRate = 0.6m,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            StockId = "BTC_EUR",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "BTC/EUR",
+                            Enabled = true,
+                            Name = "BTC/EUR",
+                            PayOutRate = 0.6m,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            StockId = "EUR_AUD",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "EUR/AUD",
+                            Enabled = true,
+                            Name = "EUR/AUD",
+                            PayOutRate = 0.6m,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            StockId = "CAD_JPY",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "CAD/JPY",
+                            Enabled = true,
+                            Name = "CAD/JPY",
+                            PayOutRate = 0.6m,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            StockId = "GBP_JPY",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "GBP/JPY",
+                            Enabled = true,
+                            Name = "GBP/JPY",
+                            PayOutRate = 0.6m,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            StockId = "AUD_CAD",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "AUD/CAD",
+                            Enabled = true,
+                            Name = "AUD/CAD",
+                            PayOutRate = 0.6m,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            StockId = "AUD_JPY",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "AUD/JPY",
+                            Enabled = true,
+                            Name = "AUD/JPY",
+                            PayOutRate = 0.6m,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            StockId = "EUR_CAD",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "EUR/CAD",
+                            Enabled = true,
+                            Name = "EUR/CAD",
+                            PayOutRate = 0.6m,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("com.capital.bet.data.Models.Stocks.StockTick", b =>
@@ -471,10 +623,6 @@ namespace com.capital.bet.web.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("DefaultCharacter")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
-
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
@@ -584,32 +732,32 @@ namespace com.capital.bet.web.Migrations
                         new
                         {
                             Id = "cb210f02-c9df-4bf3-8ea4-351852ddc432",
-                            ConcurrencyStamp = "199980d6-eac1-4be0-bf47-d8be9241a4ee",
+                            ConcurrencyStamp = "c90c8234-65da-4ba9-9a1c-11a148b58b4c",
                             Name = "administrator",
                             NormalizedName = "ADMINISTRATOR",
-                            CreatedDate = new DateTime(2020, 5, 4, 2, 33, 0, 46, DateTimeKind.Local).AddTicks(9411),
+                            CreatedDate = new DateTime(2020, 5, 4, 16, 9, 47, 109, DateTimeKind.Local).AddTicks(9663),
                             Description = "Administrative role used to run the system",
-                            UpdatedDate = new DateTime(2020, 5, 4, 2, 33, 0, 49, DateTimeKind.Local).AddTicks(3522)
+                            UpdatedDate = new DateTime(2020, 5, 4, 16, 9, 47, 112, DateTimeKind.Local).AddTicks(5864)
                         },
                         new
                         {
                             Id = "974be833-b074-4778-9b74-ca83e601dbbf",
-                            ConcurrencyStamp = "2bb0ad88-f426-41a5-9f2b-0fec58c60746",
+                            ConcurrencyStamp = "3929c1e1-a725-4ba6-a470-32523ac2dda1",
                             Name = "trade_moderator",
                             NormalizedName = "TRADE_MODERATOR",
-                            CreatedDate = new DateTime(2020, 5, 4, 2, 33, 0, 49, DateTimeKind.Local).AddTicks(4087),
+                            CreatedDate = new DateTime(2020, 5, 4, 16, 9, 47, 112, DateTimeKind.Local).AddTicks(6506),
                             Description = "System Moderator role for users running projects",
-                            UpdatedDate = new DateTime(2020, 5, 4, 2, 33, 0, 49, DateTimeKind.Local).AddTicks(4107)
+                            UpdatedDate = new DateTime(2020, 5, 4, 16, 9, 47, 112, DateTimeKind.Local).AddTicks(6527)
                         },
                         new
                         {
                             Id = "818352ca-d178-407b-b8f4-48ac2ee6f3ac",
-                            ConcurrencyStamp = "23bcd3f3-985a-4866-8a24-675d3f9bc986",
+                            ConcurrencyStamp = "787a3213-b59c-4688-aaaa-5d4fc01a32bd",
                             Name = "tradder",
                             NormalizedName = "TRADDER",
-                            CreatedDate = new DateTime(2020, 5, 4, 2, 33, 0, 49, DateTimeKind.Local).AddTicks(4150),
+                            CreatedDate = new DateTime(2020, 5, 4, 16, 9, 47, 112, DateTimeKind.Local).AddTicks(6563),
                             Description = "General user Account with minimal permissions.",
-                            UpdatedDate = new DateTime(2020, 5, 4, 2, 33, 0, 49, DateTimeKind.Local).AddTicks(4154)
+                            UpdatedDate = new DateTime(2020, 5, 4, 16, 9, 47, 112, DateTimeKind.Local).AddTicks(6567)
                         });
                 });
 

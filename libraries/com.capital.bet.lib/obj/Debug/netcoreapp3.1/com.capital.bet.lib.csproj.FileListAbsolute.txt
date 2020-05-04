@@ -1,0 +1,9 @@
+C:\Users\mjoha\source\repos\com.capital.bet\capitalbet\libraries\com.capital.bet.lib\bin\Debug\netcoreapp3.1\com.capital.bet.lib.deps.json
+C:\Users\mjoha\source\repos\com.capital.bet\capitalbet\libraries\com.capital.bet.lib\bin\Debug\netcoreapp3.1\com.capital.bet.lib.dll
+C:\Users\mjoha\source\repos\com.capital.bet\capitalbet\libraries\com.capital.bet.lib\obj\Debug\netcoreapp3.1\com.capital.bet.lib.AssemblyInfoInputs.cache
+C:\Users\mjoha\source\repos\com.capital.bet\capitalbet\libraries\com.capital.bet.lib\obj\Debug\netcoreapp3.1\com.capital.bet.lib.AssemblyInfo.cs
+C:\Users\mjoha\source\repos\com.capital.bet\capitalbet\libraries\com.capital.bet.lib\bin\Debug\netcoreapp3.1\com.capital.bet.lib.pdb
+C:\Users\mjoha\source\repos\com.capital.bet\capitalbet\libraries\com.capital.bet.lib\obj\Debug\netcoreapp3.1\com.capital.bet.lib.csproj.CoreCompileInputs.cache
+C:\Users\mjoha\source\repos\com.capital.bet\capitalbet\libraries\com.capital.bet.lib\obj\Debug\netcoreapp3.1\com.capital.bet.lib.dll
+C:\Users\mjoha\source\repos\com.capital.bet\capitalbet\libraries\com.capital.bet.lib\obj\Debug\netcoreapp3.1\com.capital.bet.lib.pdb
+C:\Users\mjoha\source\repos\com.capital.bet\capitalbet\libraries\com.capital.bet.lib\obj\Debug\netcoreapp3.1\com.capital.bet.lib.csprojAssemblyReference.cache

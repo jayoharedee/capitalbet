@@ -1,6 +1,7 @@
 using com.capital.bet.data;
 using com.capital.bet.data.Models.Users;
 using com.capital.bet.web.Configuration;
+using com.capital.bet.web.Hubs;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
@@ -82,7 +83,7 @@ namespace com.capital.bet.web
             // add authorization pipe line
             services.AddAuthorization();
 
-
+            services.AddSignalR();
             // configure background services 
 
 
@@ -174,6 +175,7 @@ namespace com.capital.bet.web
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
+                endpoints.MapHub<StockHub>("/stocks");
             });
 
             app.UseSpa(spa =>

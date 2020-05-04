@@ -3,15 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.capital.bet.data", "com.capital.bet.data\com.capital.bet.data.csproj", "{28790196-94C3-4988-8585-6B5CE52DBBF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "com.capital.bet.data", "com.capital.bet.data\com.capital.bet.data.csproj", "{28790196-94C3-4988-8585-6B5CE52DBBF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.capital.bet.web", "..\..\frontend\com.capital.bet.web\com.capital.bet.web.csproj", "{7348244B-506C-480D-9A9A-AE2FF10DDBBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "com.capital.bet.web", "..\..\frontend\com.capital.bet.web\com.capital.bet.web.csproj", "{7348244B-506C-480D-9A9A-AE2FF10DDBBD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "library", "library", "{8ED812B0-B1F3-4A0B-BACC-BB2E3AEB1825}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "frontend", "frontend", "{829E6F73-DC66-4EA1-9234-0F6327D9480D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "backend", "backend", "{C0D4F240-9012-47B2-948C-277A5EDFE71D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.capital.bet.lib", "..\com.capital.bet.lib\com.capital.bet.lib.csproj", "{A8E30853-B36A-4445-AA35-5708AF0F1589}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.capital.bet.micro.stocks", "..\..\backend\com.capital.bet.micro.stocks\com.capital.bet.micro.stocks.csproj", "{DEE9480B-1276-4173-BD14-530B114424C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{7348244B-506C-480D-9A9A-AE2FF10DDBBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7348244B-506C-480D-9A9A-AE2FF10DDBBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7348244B-506C-480D-9A9A-AE2FF10DDBBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8E30853-B36A-4445-AA35-5708AF0F1589}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8E30853-B36A-4445-AA35-5708AF0F1589}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8E30853-B36A-4445-AA35-5708AF0F1589}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8E30853-B36A-4445-AA35-5708AF0F1589}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEE9480B-1276-4173-BD14-530B114424C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEE9480B-1276-4173-BD14-530B114424C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEE9480B-1276-4173-BD14-530B114424C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEE9480B-1276-4173-BD14-530B114424C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -34,6 +46,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{28790196-94C3-4988-8585-6B5CE52DBBF2} = {8ED812B0-B1F3-4A0B-BACC-BB2E3AEB1825}
 		{7348244B-506C-480D-9A9A-AE2FF10DDBBD} = {829E6F73-DC66-4EA1-9234-0F6327D9480D}
+		{A8E30853-B36A-4445-AA35-5708AF0F1589} = {8ED812B0-B1F3-4A0B-BACC-BB2E3AEB1825}
+		{DEE9480B-1276-4173-BD14-530B114424C6} = {C0D4F240-9012-47B2-948C-277A5EDFE71D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {057698C7-03A5-439D-8985-06FEDBCDD5A6}

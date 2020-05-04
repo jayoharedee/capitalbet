@@ -1,1 +1,36 @@
-<p>login-form works!</p>
+<mdb-card>
+  <mdb-card-header class="stylish-color">
+    <span class="title-text">Please Sign In</span>
+  </mdb-card-header>
+  <mdb-card-body>
+    <form [formGroup]="loginGroup">
+      <div class="row" *ngIf="errorMessage.length > 3">
+        <div class="col-12">
+          <span class="text-danger" [innerHTML]="errorMessage | keepHtml"></span>
+        </div>
+      </div>
+      <div class="md-form">
+        <input type="text" class="form-control" formControlName="username" mdbInput />
+        <label>Username <span class="text-danger" *ngIf="UserName.invalid">*</span></label>
+      </div>
+      <div class="md-form">
+        <input type="password" class="form-control" formControlName="password" mdbInput />
+        <label>Password <span class="text-danger" *ngIf="Password.invalid">*</span></label>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <mdb-checkbox formControlName="rememberMe">Remember Me</mdb-checkbox>
+        </div>
+      </div>
+      <div class="row" style="height:15px">&nbsp;</div>
+      <div class="row">
+        <div class="col-12">
+          <button mdbBtn type="button" [class.disabled]="processingLogin" (click)="signOnUser()" color="default" block="true" mdbWavesEffect>
+            <mdb-spinner spinnerType="small" spinnerColor="yellow" *ngIf="processingLogin"></mdb-spinner> Sign In
+          </button>
+          <button mdbBtn type="button" [class.disabled]="processingLogin" (click)="mdbRef.hide()" color="default" block="true" outline="true" mdbWavesEffect>Close</button>
+        </div>
+      </div>
+    </form>
+  </mdb-card-body>
+</mdb-card>

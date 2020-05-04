@@ -74,6 +74,14 @@ namespace com.capital.bet.web.Configuration
 
                 new Client
                 {
+                    ClientId = "com.capital.bet.micro.stocks",
+                    ClientSecrets = { new Secret("731F408D-4C77-41F6-878E-06599B7C218B".Sha256()) },
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    AllowedScopes = { IdentityServerConfig.ApiName }
+                },
+
+                new Client
+                {
                     ClientId = SwaggerClientID,
                     ClientName =  "Swagger UI",
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,

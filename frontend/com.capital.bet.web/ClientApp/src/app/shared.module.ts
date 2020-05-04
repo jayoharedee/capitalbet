@@ -13,11 +13,13 @@ import { PathNotFoundComponent } from './shared/path-not-found/path-not-found.co
 import { NavMenuComponent } from './shared/nav-menu/nav-menu.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { LoginFormComponent } from './shared/login-form/login-form.component';
+import { EscapeHtmlPipe } from './pipes/keep-html.pipe';
 
 
 
 @NgModule({
   declarations: [
+    EscapeHtmlPipe,
     PathNotFoundComponent,
     NavMenuComponent,
     FooterComponent,
@@ -30,6 +32,7 @@ import { LoginFormComponent } from './shared/login-form/login-form.component';
     MDBBootstrapModulesPro.forRoot(),
   ],
   exports: [
+    EscapeHtmlPipe,
     NavMenuComponent,
     FooterComponent,
     LoginFormComponent

@@ -1,0 +1,264 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\mjoha\\source\\repos\\com.capital.bet\\capitalbet\\backend\\com.capital.bet.micro.stocks\\com.capital.bet.micro.stocks.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\mjoha\\source\\repos\\com.capital.bet\\capitalbet\\backend\\com.capital.bet.micro.stocks\\com.capital.bet.micro.stocks.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\mjoha\\source\\repos\\com.capital.bet\\capitalbet\\backend\\com.capital.bet.micro.stocks\\com.capital.bet.micro.stocks.csproj",
+        "projectName": "com.capital.bet.micro.stocks",
+        "projectPath": "C:\\Users\\mjoha\\source\\repos\\com.capital.bet\\capitalbet\\backend\\com.capital.bet.micro.stocks\\com.capital.bet.micro.stocks.csproj",
+        "packagesPath": "C:\\Users\\mjoha\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mjoha\\source\\repos\\com.capital.bet\\capitalbet\\backend\\com.capital.bet.micro.stocks\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\mjoha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://www.myget.org/F/aspnet-contrib/api/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "C:\\Users\\mjoha\\source\\repos\\com.capital.bet\\capitalbet\\libraries\\com.capital.bet.data\\com.capital.bet.data\\com.capital.bet.data.csproj": {
+                "projectPath": "C:\\Users\\mjoha\\source\\repos\\com.capital.bet\\capitalbet\\libraries\\com.capital.bet.data\\com.capital.bet.data\\com.capital.bet.data.csproj"
+              },
+              "C:\\Users\\mjoha\\source\\repos\\com.capital.bet\\capitalbet\\libraries\\com.capital.bet.lib\\com.capital.bet.lib.csproj": {
+                "projectPath": "C:\\Users\\mjoha\\source\\repos\\com.capital.bet\\capitalbet\\libraries\\com.capital.bet.lib\\com.capital.bet.lib.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "IdentityModel": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
+            "Microsoft.AspNetCore.SignalR": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
+            "Microsoft.AspNetCore.SignalR.Client": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.AspNetCore.SignalR.Core": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            },
+            "Serilog": {
+              "target": "Package",
+              "version": "[2.9.0, )"
+            },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[3.2.0, )"
+            },
+            "Serilog.Extensions.Logging": {
+              "target": "Package",
+              "version": "[3.0.1, )"
+            },
+            "Serilog.Sinks.Console": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\mjoha\\source\\repos\\com.capital.bet\\capitalbet\\libraries\\com.capital.bet.data\\com.capital.bet.data\\com.capital.bet.data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\mjoha\\source\\repos\\com.capital.bet\\capitalbet\\libraries\\com.capital.bet.data\\com.capital.bet.data\\com.capital.bet.data.csproj",
+        "projectName": "com.capital.bet.data",
+        "projectPath": "C:\\Users\\mjoha\\source\\repos\\com.capital.bet\\capitalbet\\libraries\\com.capital.bet.data\\com.capital.bet.data\\com.capital.bet.data.csproj",
+        "packagesPath": "C:\\Users\\mjoha\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mjoha\\source\\repos\\com.capital.bet\\capitalbet\\libraries\\com.capital.bet.data\\com.capital.bet.data\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\mjoha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://www.myget.org/F/aspnet-contrib/api/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\mjoha\\source\\repos\\com.capital.bet\\capitalbet\\libraries\\com.capital.bet.lib\\com.capital.bet.lib.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\mjoha\\source\\repos\\com.capital.bet\\capitalbet\\libraries\\com.capital.bet.lib\\com.capital.bet.lib.csproj",
+        "projectName": "com.capital.bet.lib",
+        "projectPath": "C:\\Users\\mjoha\\source\\repos\\com.capital.bet\\capitalbet\\libraries\\com.capital.bet.lib\\com.capital.bet.lib.csproj",
+        "packagesPath": "C:\\Users\\mjoha\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mjoha\\source\\repos\\com.capital.bet\\capitalbet\\libraries\\com.capital.bet.lib\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\mjoha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://www.myget.org/F/aspnet-contrib/api/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

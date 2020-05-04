@@ -111,7 +111,7 @@ namespace com.capital.bet.data
             builder.Entity<Option>().Property(p => p.Amount).HasColumnType(priceDecimalType);
             builder.Entity<Option>().Property(p => p.PayOutAmount).HasColumnType(priceDecimalType);
 
-
+            // Add Roles
             builder.Entity<ApplicationRole>().HasData(new ApplicationRole()
             {
                 Id = Guid.Parse("CB210F02-C9DF-4BF3-8EA4-351852DDC432").ToString(),
@@ -137,6 +137,130 @@ namespace com.capital.bet.data
                 CreatedDate = DateTime.Now,
                 UpdatedDate = DateTime.Now,
             });
+
+
+            // add Default stocks
+            builder.Entity<Stock>().HasData(new Stock()
+            {
+                Description= "EUR/USD",
+                StockId= "EUR_USD",
+                Enabled=true,
+                Name= "EUR/USD",
+                PayOutRate=new decimal(0.6)
+            },
+            new Stock()
+            {
+                Description = "GBP/USD",
+                StockId = "GBP_USD",
+                Enabled = true,
+                Name = "GBP/USD",
+                PayOutRate = new decimal(0.6)
+            },
+            new Stock()
+            {
+                Description = "EUR/JPY",
+                StockId = "EUR_JPY",
+                Enabled = true,
+                Name = "EUR/JPY",
+                PayOutRate = new decimal(0.6)
+            },
+            new Stock()
+            {
+                Description = "USD/JPY",
+                StockId = "USD_JPY",
+                Enabled = true,
+                Name = "USD/JPY",
+                PayOutRate = new decimal(0.6)
+            },
+            new Stock()
+            {
+                Description = "AUD/USD",
+                StockId = "AUD_USD",
+                Enabled = true,
+                Name = "AUD/USD",
+                PayOutRate = new decimal(0.6)
+            },
+            new Stock()
+            {
+                Description = "USD/CAD",
+                StockId = "USD_CAD",
+                Enabled = true,
+                Name = "USD/CAD",
+                PayOutRate = new decimal(0.6)
+            },
+            new Stock()
+            {
+                Description = "EUR/GBP",
+                StockId = "EUR_GBP",
+                Enabled = true,
+                Name = "EUR/GBP",
+                PayOutRate = new decimal(0.6)
+            },
+            new Stock()
+            {
+                Description = "BTC/USD",
+                StockId = "BTC_USD",
+                Enabled = true,
+                Name = "BTC/USD",
+                PayOutRate = new decimal(0.6)
+            },
+            new Stock()
+            {
+                Description = "BTC/EUR",
+                StockId = "BTC_EUR",
+                Enabled = true,
+                Name = "BTC/EUR",
+                PayOutRate = new decimal(0.6)
+            },
+            new Stock()
+            {
+                Description = "EUR/AUD",
+                StockId = "EUR_AUD",
+                Enabled = true,
+                Name = "EUR/AUD",
+                PayOutRate = new decimal(0.6)
+            },
+            new Stock()
+            {
+                Description = "CAD/JPY",
+                StockId = "CAD_JPY",
+                Enabled = true,
+                Name = "CAD/JPY",
+                PayOutRate = new decimal(0.6)
+            },
+            new Stock()
+            {
+                Description = "GBP/JPY",
+                StockId = "GBP_JPY",
+                Enabled = true,
+                Name = "GBP/JPY",
+                PayOutRate = new decimal(0.6)
+            },
+            new Stock()
+            {
+                Description = "AUD/CAD",
+                StockId = "AUD_CAD",
+                Enabled = true,
+                Name = "AUD/CAD",
+                PayOutRate = new decimal(0.6)
+            },
+            new Stock()
+            {
+                Description = "AUD/JPY",
+                StockId = "AUD_JPY",
+                Enabled = true,
+                Name = "AUD/JPY",
+                PayOutRate = new decimal(0.6)
+            },
+            new Stock()
+            {
+                Description = "EUR/CAD",
+                StockId = "EUR_CAD",
+                Enabled = true,
+                Name = "EUR/CAD",
+                PayOutRate = new decimal(0.6)
+            });
+
         }
 
 
