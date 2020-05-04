@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\frontend"
+    "\\frontend",
+    "\\frontend\\com.capital.bet.web"
   ],
-  "SelectedNode": "\\frontend\\README.md",
+  "SelectedNode": "\\frontend\\com.capital.bet.web\\Configuration",
   "PreviewInSolutionExplorer": false
 }

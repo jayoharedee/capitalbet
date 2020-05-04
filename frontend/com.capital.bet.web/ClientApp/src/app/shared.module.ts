@@ -10,18 +10,32 @@ import { AccountService } from './services/account.service';
 import { LocalStorageService } from './services/local-storage.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { PathNotFoundComponent } from './shared/path-not-found/path-not-found.component';
+import { NavMenuComponent } from './shared/nav-menu/nav-menu.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { LoginFormComponent } from './shared/login-form/login-form.component';
 
 
 
 @NgModule({
   declarations: [
-    PathNotFoundComponent
+    PathNotFoundComponent,
+    NavMenuComponent,
+    FooterComponent,
+    LoginFormComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
     MDBBootstrapModulesPro.forRoot(),
+  ],
+  exports: [
+    NavMenuComponent,
+    FooterComponent,
+    LoginFormComponent
+  ],
+  entryComponents: [
+    LoginFormComponent
   ]
 })
 export class SharedModule {

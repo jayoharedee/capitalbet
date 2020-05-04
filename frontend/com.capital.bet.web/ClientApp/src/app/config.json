@@ -2,6 +2,8 @@
   "AuthUrl": "http://localhost:5000",
   "ApiUrl": "http://localhost:5000",
   "BaseUrl": "http://localhost:5000",
+  "FacebookUrl": "https://www.facebook.com",
+  "TwitterUrl": "https://www.twitter.com",
   "AppName": "Fruixion WorkShare",
   "MajVer": 0,
   "MinVer": 1,

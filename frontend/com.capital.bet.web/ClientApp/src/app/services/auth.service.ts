@@ -55,8 +55,8 @@ export class AuthService {
     //this.oauth.configure(authCodeFlowConfig);
 
     this.oauth.issuer = 'http://localhost:5000';
-    this.oauth.clientId = 'workshare_spa';
-    this.oauth.scope = 'openid email phone profile offline_access workshare_api';
+    this.oauth.clientId = 'capitalbet_spa';
+    this.oauth.scope = 'openid email phone profile offline_access capitalbet_api';
     this.oauth.skipSubjectCheck = true;
     this.oauth.dummyClientSecret = 'not_used';
     //this.oauth.setStorage(sessionStorage);

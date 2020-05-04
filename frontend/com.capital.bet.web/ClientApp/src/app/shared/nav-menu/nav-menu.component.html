@@ -1,0 +1,76 @@
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark" [containerInside]="false">
+
+  <!-- Navbar brand -->
+  <mdb-navbar-brand>
+    <a class="navbar-brand" routerLink="/home">
+    <img src="/assets/nav-brand.gif" alt="Capital Bet" style="height:35px;" class="img-fluid"/>
+    </a>
+  </mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link waves-light" routerLink="/home" mdbWavesEffect>Home</a>
+      </li>
+
+      <li class="nav-item" *ngIf="isAuthed">
+        <a class="nav-link waves-light" routerLink="/markets/dashboard" mdbWavesEffect>Dashboard</a>
+      </li>
+      <li class="nav-item" *ngIf="isAuthed">
+        <a class="nav-link waves-light" routerLink="/account/mywallet" mdbWavesEffect>My Wallet</a>
+      </li>
+      <li class="nav-item" *ngIf="isAuthed">
+        <a class="nav-link waves-light" routerLink="/account/deposit" mdbWavesEffect>Deposit Funds</a>
+      </li>
+
+      <li class="nav-item" *ngIf="!isAuthed">
+        <a class="nav-link waves-light" routerLink="/home/howitworks" mdbWavesEffect>How It Works</a>
+      </li>
+      <li class="nav-item" *ngIf="!isAuthed">
+        <a class="nav-link waves-light" routerLink="/home/signup" mdbWavesEffect>Register</a>
+      </li>
+    </ul>
+    <!-- Links -->
+
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      <li class="nav-item" *ngIf="!isAuthed">
+        <a class="nav-link waves-light" routerLink="/home/signup" mdbWavesEffect>Register</a>
+      </li>
+      <li class="nav-item" *ngIf="!isAuthed">
+        <a class="nav-link waves-light" (click)="openSignInDialog()" mdbWavesEffect>Sign In</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" [href]="twitterUrl" target="_blank">
+          <mdb-icon fab icon="twitter"></mdb-icon>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [href]="facebookUrl" target="_blank">
+          <mdb-icon fab icon="facebook"></mdb-icon>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="isAuthed">
+        <a class="nav-link">
+          <div class="btn-group" mdbDropdown>
+            <mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon>
+            <div class="dropdown-menu dropdown-menu-right dropdown-primary">
+              <a class="dropdown-item" routerLink="/account/dashboard">My Account</a>
+              <a class="dropdown-item" routerLink="/account/mywallet">My Wallet</a>
+              <a class="dropdown-item" routerLink="/account/transfers">Transfer Funds</a>
+              <div class="divider dropdown-divider"></div>
+              <a class="dropdown-item" routerLink="/support">Support</a>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </links>
+  <!-- Collapsible content -->
+
+</mdb-navbar>
+<!--/.Navbar-->

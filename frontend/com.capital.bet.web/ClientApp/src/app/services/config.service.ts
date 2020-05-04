@@ -23,7 +23,10 @@ export class ConfigService {
   public get RevisionNumber(): number { return conf.Revision; }
   /** Application Friendly Name */
   public get ApplicationName(): string { return conf.AppName; }
-
+  /** Facebook Url */
+  public get FacebookUrl(): string { return conf.FacebookUrl; }
+  /** Twitter Url */
+  public get TwitterUrl(): string { return conf.TwitterUrl; }
 
   constructor() {
   }

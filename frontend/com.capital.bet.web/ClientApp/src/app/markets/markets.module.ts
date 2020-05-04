@@ -3,12 +3,15 @@ import { CommonModule } from '@angular/common';
 
 import { MarketsRoutingModule } from './markets-routing.module';
 import { MarketsComponent } from './markets.component';
+import { MarketDashboardComponent } from './market-dashboard/market-dashboard.component';
+import { SharedModule } from '../shared.module';
 
 
 @NgModule({
-  declarations: [MarketsComponent],
+  declarations: [MarketsComponent, MarketDashboardComponent],
   imports: [
     CommonModule,
+    SharedModule.forRoot(),
     MarketsRoutingModule
   ]
 })
