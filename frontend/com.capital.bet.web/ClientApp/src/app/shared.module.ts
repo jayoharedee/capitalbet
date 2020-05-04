@@ -1,0 +1,41 @@
+import { NgModule, ModuleWithProviders } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
+import { MDBSpinningPreloader } from 'ng-uikit-pro-standard';
+import { AuthService } from './services/auth.service';
+import { ConfigService } from './services/config.service';
+import { AccountService } from './services/account.service';
+import { LocalStorageService } from './services/local-storage.service';
+import { AuthGuardService } from './services/auth-guard.service';
+import { PathNotFoundComponent } from './shared/path-not-found/path-not-found.component';
+
+
+
+@NgModule({
+  declarations: [
+    PathNotFoundComponent
+  ],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule,
+    MDBBootstrapModulesPro.forRoot(),
+  ]
+})
+export class SharedModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SharedModule,
+      providers: [
+        AuthService,
+        ConfigService,
+        AccountService,
+        LocalStorageService,
+        AuthGuardService,
+        MDBSpinningPreloader,
+      ]
+    };
+  }
+}

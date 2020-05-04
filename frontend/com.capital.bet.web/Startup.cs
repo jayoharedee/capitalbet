@@ -14,7 +14,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
-
+using System.IO;
+using System.Reflection;
 
 namespace com.capital.bet.web
 {
@@ -111,6 +112,10 @@ namespace com.capital.bet.web
                         }
                     }
                 });
+
+                //var xmlFile = "swagger_dotnetcore.xml"; /// $"{ Assembly.GetExecutingAssembly().GetName().Name}.XML";
+                //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                //c.IncludeXmlComments(xmlPath);
             });
 
 

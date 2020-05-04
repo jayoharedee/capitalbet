@@ -54,11 +54,6 @@ namespace com.capital.bet.data.Models.Users
         /// </summary>
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         /// <summary>
-        /// Default Character Account
-        /// </summary>
-        [StringLength(256)]
-        public string DefaultCharacter { get; set; } = string.Empty;
-        /// <summary>
         /// First Name
         /// </summary>
         [Required]

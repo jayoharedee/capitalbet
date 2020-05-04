@@ -1,0 +1,9 @@
+{
+  "AuthUrl": "http://localhost:5000",
+  "ApiUrl": "http://localhost:5000",
+  "BaseUrl": "http://localhost:5000",
+  "AppName": "Fruixion WorkShare",
+  "MajVer": 0,
+  "MinVer": 1,
+  "Revision": 0
+}
