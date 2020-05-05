@@ -167,7 +167,8 @@ namespace com.capital.bet.web.Controllers
                 {
                     AcountId = accId,
                     UserId = auser.Id,
-                    Balance = request.DepositAmount
+                    Balance = request.DepositAmount,
+                    TypeId = request.AccountType
                 };
 
                 // try to create user
@@ -333,5 +334,9 @@ namespace com.capital.bet.web.Controllers
         /// deposit Amount
         /// </summary>
         public decimal DepositAmount { get; set; }
+        /// <summary>
+        /// Account Type Id
+        /// </summary>
+        public Guid AccountType { get; set; }
     }
 }

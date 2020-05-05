@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 import { ApplicationUser } from '../../models/application-user.model';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -61,6 +62,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
   constructor(private fb: FormBuilder,
     private accSrv: AccountService,
     private auth: AuthService,
+    private route:Router,
     private modalSrv: MDBModalService) {
     this.registerGroup = this.fb.group({
       fname: ['', [Validators.required]],
@@ -146,7 +148,6 @@ export class SignUpComponent implements OnInit, OnDestroy {
         this.errorMessage += 'The password fields do not match ...<br/>';
       }
 
-      console.log(this.errorMessage);
 
       if (this.errorMessage.length == 0)
         this.staticTabs.setActiveTab(2);
@@ -201,10 +202,10 @@ export class SignUpComponent implements OnInit, OnDestroy {
     usr.userName = this.RegisterUsername.value;
 
     this.subs.push(
-      this.accSrv.registerUser(usr, this.RegisterPassword.value, this.currentValue).subscribe((user: ApplicationUser) => {
+      this.accSrv.registerUser(usr, this.RegisterPassword.value, this.currentValue, this.selectedAccount.typeId).subscribe((user: ApplicationUser) => {
         if (user != null) {
           this.auth.signIn(this.RegisterUsername.value, this.RegisterPassword.value, false).subscribe(() => {
-
+            this.route.navigateByUrl("/home/index");
           }, err => {
               this.uiDisabled = false;
               this.errorMessage = 'Failed to authenticate the new user record ...<br/>';

@@ -16,7 +16,7 @@ namespace com.capital.bet.data.Models.Accounts
         /// Type Id
         /// </summary>
         [Key]
-        public Guid TypeId { get; set; }
+        public Guid TypeId { get; set; } = Guid.NewGuid();
         /// <summary>
         /// Name
         /// </summary>

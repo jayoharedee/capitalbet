@@ -1,7 +1,7 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { OAuthService } from 'angular-oauth2-oidc';
+import { OAuthService, OAuthErrorEvent } from 'angular-oauth2-oidc';
 import { ConfigService } from './config.service';
 import { JwtHelper } from './jwt-helper';
 import { Observable, Subject, from, throwError } from 'rxjs';
@@ -49,17 +49,17 @@ export class AuthService {
     // get current user from application storage
     this._currentUser = this.store.CurrentUser;
     this.reevaluateLogin();
+
+    this.oauth.events.subscribe(e => (e instanceof OAuthErrorEvent) ? console.error(e) : console.warn(e));
   }
 
   private initializeOdicService() {
-    //this.oauth.configure(authCodeFlowConfig);
-
     this.oauth.issuer = 'http://localhost:5000';
     this.oauth.clientId = 'capitalbet_spa';
     this.oauth.scope = 'openid email phone profile offline_access capitalbet_api';
     this.oauth.skipSubjectCheck = true;
     this.oauth.dummyClientSecret = 'not_used';
-    //this.oauth.setStorage(sessionStorage);
+    this.oauth.setStorage(sessionStorage);
   }
 
   /** Is the User Logged In */
@@ -116,11 +116,12 @@ export class AuthService {
     }
     this.initializeOdicService();
 
-    return from(this.oauth.loadDiscoveryDocument(this.discoveryDocUrl)).pipe(mergeMap(() => {
-      return from(this.oauth.fetchTokenUsingPasswordFlow(username, password)).pipe(
-        map(() => this.processLoginResponse(this.oauth.getAccessToken(), rememberMe))
-      );
-    }));
+    return from(this.oauth.loadDiscoveryDocument(this.discoveryDocUrl)).pipe(
+      mergeMap(() => {
+        return from(this.oauth.fetchTokenUsingPasswordFlow(username, password)).pipe(
+          map(() => this.processLoginResponse(this.oauth.getAccessToken(), rememberMe))
+        );
+      }));
   }
 
   /** Refresh Login */

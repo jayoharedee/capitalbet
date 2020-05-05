@@ -18,9 +18,9 @@ export class AccountService {
    * @param user Application User
    * @param password User Password
    */
-  public registerUser(user: ApplicationUser, password: string, deposit: number) {
+  public registerUser(user: ApplicationUser, password: string, deposit: number, accountType:string) {
     let url: string = this.config.ApiUrl + '/api/Account/users/create';
-    return this.http.post(url, { user: user, password: password, depositAmount: deposit });
+    return this.http.post(url, { user: user, password: password, depositAmount: deposit, accountType: accountType });
   }
 
   /** Get the current logged in user */

@@ -27,7 +27,6 @@ namespace com.capital.bet.data.Models.Accounts
         /// </summary>
         [Required]
         public Guid TypeId { get; set; }
-        public AccountType AccountType { get; set; }
         /// <summary>
         /// User Account Balance
         /// </summary>
