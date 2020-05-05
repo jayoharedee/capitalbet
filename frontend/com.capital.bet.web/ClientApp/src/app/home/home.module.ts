@@ -7,6 +7,10 @@ import { SharedModule } from '../shared.module';
 import { HowItWorksComponent } from './how-it-works/how-it-works.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { IndexComponent } from './index/index.component';
+import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
+import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
+import { RiskStatementComponent } from './risk-statement/risk-statement.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -14,12 +18,20 @@ import { IndexComponent } from './index/index.component';
     HomeComponent,
     HowItWorksComponent,
     SignUpComponent,
-    IndexComponent
+    IndexComponent,
+    TermsAndConditionsComponent,
+    RiskStatementComponent
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     SharedModule.forRoot(),
+    MDBBootstrapModulesPro.forRoot(),
     HomeRoutingModule
+  ],
+  entryComponents: [
+    TermsAndConditionsComponent,
+    RiskStatementComponent
   ]
 })
 export class HomeModule { }

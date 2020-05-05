@@ -1,1 +1,368 @@
-<p>sign-up works!</p>
+<div class="container">
+  <!-- Nav Tabs -->
+  <mdb-tabset #staticTabs [buttonClass]="'md-tabs tabs-3 stylish-color'" [contentClass]="'card'">
+    <!--Panel 1-->
+    <mdb-tab heading="Open an account" [disabled]="uiDisabled">
+      <div class="row">
+        <div class="col-12">
+          <br>
+          <!-- Information Panel-->
+          <div class="row">
+            <div class="col-12">
+
+            </div>
+          </div>
+          <!-- Register Form -->
+          <form [formGroup]="registerGroup">
+            <div class="row">
+              <div class="col-3"></div>
+              <div class="col-8">
+
+                <div class="row">
+                  <div class="col-12">
+                    <span class="register-title">Open Your Account Today!</span>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-12">
+                    <span class="text-danger" [innerHTML]="errorMessage | keepHtml"></span>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-6">
+                    <div class="md-form">
+                      <input type="text" class="form-control" mdbInput formControlName="fname" />
+                      <label>First Name</label>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="md-form">
+                      <input type="text" class="form-control" mdbInput formControlName="lname" />
+                      <label>Last Name</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="md-form">
+                  <input type="text" class="form-control" mdbInput formControlName="username" />
+                  <label>Username</label>
+                </div>
+
+                <div class="md-form">
+                  <input type="email" class="form-control" mdbInput formControlName="email" />
+                  <label>Email Address</label>
+                </div>
+
+
+                <div class="row">
+                  <div class="col-6">
+                    <div class="md-form">
+                      <input type="password" class="form-control" mdbInput formControlName="pass1" />
+                      <label>Password</label>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="md-form">
+                      <input type="password" class="form-control" mdbInput formControlName="pass2" />
+                      <label>Confirm Password</label>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="row">
+                  <div class="col-12">
+                    <mdb-checkbox formControlName="terms">I have read and agree to the <a (click)="showTerms()" class="terms">Terms</a> and <a (click)="showRiskStatement()" class="terms">Risk statement</a></mdb-checkbox>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-12">
+                    <mdb-checkbox formControlName="usaOut">I confirm, this service is provided to me outside USA territory</mdb-checkbox>
+                  </div>
+                </div>
+
+                <div class="row" style="height:15px;">&nbsp;</div>
+
+                <div class="row">
+                  <div class="col-12">
+                    <button mdbBtn type="button" (click)="registerUserInfo()" color="default" block="true" mdbWavesEffect>Register &gt;&gt;</button>
+                  </div>
+                </div>
+
+
+
+              </div>
+              <div class="col-1"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </mdb-tab>
+    <!--Panel 2-->
+    <mdb-tab heading="Account Types" [disabled]="uiDisabled">
+      <div class="row">
+        <div class="col-12">
+          <br>
+          <div class="row">
+            <div class="col-12">
+
+
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+
+              <mdb-carousel [isControls]="true" class="carousel-multi-item multi-animation" [type]="'carousel-multi-item'"
+                            [animation]="'slide'">
+                <mdb-carousel-item *ngFor="let item of slides; let i = index">
+                  <div class="col-md-4" *ngFor="let card of item; let cardIndex = index">
+                    <mdb-card class="my-1">
+                      <mdb-card-header class="stylish-color">
+                        <span class="acc-type-title"> {{ card.name }}</span>
+                      </mdb-card-header>
+                      <mdb-card-body>
+                        <p>{{card.features}}</p>
+                        <div class="row">
+                          <div class="col-6 feature-title">Withdraw Period</div>
+                          <div class="col-6 feature-title">{{ parseDate(card.withdrawWaitTime) }}</div>
+                        </div>
+                        <div class="row">
+                          <div class="col-6 feature-title">Minimum Trade Limit</div>
+                          <div class="col-6 feature-title">{{ card.minTradeLimit | currency }}</div>
+                        </div>
+                        <div class="row">
+                          <div class="col-6 feature-title">Maximum Trade Limit</div>
+                          <div class="col-6 feature-title">{{ card.maxTradeLimit | currency }}</div>
+                        </div>
+                        <div class="row">
+                          <div class="col-6 feature-title">Daily Trade Limit</div>
+                          <div class="col-6 feature-title">
+                            <span *ngIf="card.dailyTradeLimit >= 0">{{ card.dailyTradeLimit }}</span>
+                            <span *ngIf="card.dailyTradeLimit < 0" class="text-success">Unlimited</span>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-6 feature-title">Minimum Deposit</div>
+                          <div class="col-6 feature-title">{{ card.minimumDeposit | currency }}</div>
+                        </div>
+                        <div class="row">
+                          <div class="col-6 feature-title">Bonus</div>
+                          <div class="col-6 feature-title">{{ (card.bouns*100) }}%</div>
+                        </div>
+                        <div class="row" style="height:25px;">
+                        </div>
+
+                        <a (click)="signUpAccount(card.typeId)" mdbBtn color="dark" class="waves-light" mdbWavesEffect>Sign Up Now</a>
+                      </mdb-card-body>
+                    </mdb-card>
+                  </div>
+                </mdb-carousel-item>
+              </mdb-carousel>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </mdb-tab>
+    <!--Panel 3-->
+    <mdb-tab heading="Funding Method" [disabled]="uiDisabled">
+      <div class="row">
+        <div class="col-12">
+          <br>
+          <div class="row">
+            <div class="col-12">
+
+              <div class="row">
+                <div class="col-12">
+                  <mdb-card *ngIf="selectedAccount != null">
+                    <mdb-card-header>
+                      <span class="package-title">{{ selectedAccount.name }}</span>
+                    </mdb-card-header>
+                    <mdb-card-body>
+
+                      <div class="row">
+                        <div class="col-lg-6 col-md-6 price-title">
+                          <div class="row ">
+                            <div class="col-5">
+                              Minimum Deposit
+                            </div>
+                            <div class="col-7">
+                              {{ selectedAccount.minimumDeposit | currency }}
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-5">
+                              Bonus
+                            </div>
+                            <div class="col-7">
+                              {{ (selectedAccount.bouns*100) }} %
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-5">
+                              Deposit
+                            </div>
+                            <div class="col-7">
+                              {{ currentValue | currency }}
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-5">
+                              Trading Balance
+                            </div>
+                            <div class="col-7">
+                              {{ totalDeposit | currency }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 price-title">
+                          <div class="row">
+                            <div class="col-5">BTC</div>
+                            <div class="col-7"></div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-5"></div>
+                            <div class="col-7"></div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-5"></div>
+                            <div class="col-7"></div>
+                          </div>
+
+                        </div>
+                      </div>
+
+
+                    </mdb-card-body>
+                  </mdb-card>
+                </div>
+              </div>
+
+              <div class="row" style="height:25px;">&nbsp;</div>
+
+              <div class="row">
+                <div class="col-12">
+                  <span class="register-title">Select Deposit Amount: {{ currentValue | currency }}</span>
+                  <hr/>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12">
+                  <mdb-range-input id="range" [min]="minRange" [max]="maxRange" (rangeValueChange)="rangeChanged($event)"></mdb-range-input>
+                </div>
+              </div>
+
+              
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6 col-md-12">
+              <button mdbBtn type="button" (click)="fundsLastStep()" color="dark" outline="true" block="true" mdbWavesEffect>&lt;&lt; Previous</button>
+            </div>
+            <div class="col-lg-6 col-md-12">
+              <button mdbBtn type="button" (click)="fundsNextStep()" color="dark" block="true" mdbWavesEffect>Next &gt;&gt;</button>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+    </mdb-tab>
+    <!--Panel 4-->
+    <mdb-tab heading="Almost Ready to Trade" [disabled]="!completeEnabled">
+      <div class="row">
+        <div class="col-12">
+          <br>
+
+          <div class="row">
+            <div class="col-12">
+              <p>
+                We are ready to create your account, please check the information below to continue.
+              </p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6 col-md-12">
+              <mdb-card>
+                <mdb-card-header class="stylish-color">
+                  <span class="acc-type-title">User Information</span>
+                </mdb-card-header>
+                <mdb-card-body>
+                  <div class="row">
+                    <div class="col-12">
+                      {{ RegisterFirstName.value }} {{ RegisterLastName.value }}<br />
+                      {{ RegisterUsername.value }}<br />
+                      {{ RegisterEmail.value }}<br />
+                    </div>
+                  </div>
+                </mdb-card-body>
+              </mdb-card>
+            </div>
+
+            <div class="col-lg-6 col-md-12">
+              <mdb-card>
+                <mdb-card-header class="stylish-color">
+                  <span class="acc-type-title">Trading Wallet</span>
+                </mdb-card-header>
+                <mdb-card-body>
+                  <div class="row">
+                    <div class="col-5">Deposit Amount</div>
+                    <div class="col-7">{{ currentValue | currency }}</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-5">Bonus</div>
+                    <div class="col-7" *ngIf="selectedAccount != null">{{ (selectedAccount.bouns*100) }} %</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-5">Trading Amount</div>
+                    <div class="col-7">{{ totalDeposit | currency }}</div>
+                  </div>
+                </mdb-card-body>
+              </mdb-card>
+            </div>
+          </div>
+          <div class="row" style="height:35px;">&nbsp;</div>
+
+          <div class="row" *ngIf="uiDisabled">
+            <div class="col-12">
+              <div class="row">
+                <div class="col-12">
+                  <span class="text-info">
+                    {{ progressUpdate }}
+                  </span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <mdb-progress-bar class="progress primary-color-dark" mode="indeterminate"></mdb-progress-bar>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row" style="height:35px;">&nbsp;</div>
+          <div class="row">
+            <div class="col-lg-6 col-md-12">
+              <button mdbBtn type="button" (click)="staticTabs.setActiveTab(3)" color="default" outline="true" block="true" [class.disabled]="uiDisabled" mdbWavesEffect>&lt;&lt; Last</button>
+            </div>
+            <div class="col-lg-6 col-md-12">
+              <button mdbBtn type="button" (click)="completeAccountAction()" color="default" block="true" [class.disabled]="uiDisabled" mdbWavesEffect>Create Account</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </mdb-tab>
+  </mdb-tabset>
+</div>

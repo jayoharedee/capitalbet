@@ -17,6 +17,7 @@ namespace com.capital.bet.data
         ITransactionTypeRepository _transactionTypes;
         IUserAccountRepository _userAccounts;
         IWalletTranactionRepository _walletTranactions;
+        IAccountTypeRepository _accountTypes;
 
 
         public UnitOfWork(ApplicationDbContext context)
@@ -24,7 +25,18 @@ namespace com.capital.bet.data
             _context = context;
         }
 
-
+        /// <summary>
+        /// Account Types 
+        /// </summary>
+        public IAccountTypeRepository AccountTypes 
+        {
+            get
+            {
+                if (_accountTypes == null)
+                    _accountTypes = new AccountTypeRepository(_context);
+                return _accountTypes;
+            }
+        }
         /// <summary>
         /// User Options
         /// </summary>

@@ -39,6 +39,10 @@ namespace com.capital.bet.data
         /// Wallet Transactions
         /// </summary>
         IWalletTranactionRepository WalletTranactions { get; }
+        /// <summary>
+        /// Account Types
+        /// </summary>
+        IAccountTypeRepository AccountTypes { get; }
 
         /// <summary>
         /// Save Changes

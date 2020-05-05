@@ -18,9 +18,9 @@ export class AccountService {
    * @param user Application User
    * @param password User Password
    */
-  public registerUser(user: ApplicationUser, password: string) {
+  public registerUser(user: ApplicationUser, password: string, deposit: number) {
     let url: string = this.config.ApiUrl + '/api/Account/users/create';
-    return this.http.post(url, { user: user, password: password });
+    return this.http.post(url, { user: user, password: password, depositAmount: deposit });
   }
 
   /** Get the current logged in user */
@@ -60,6 +60,12 @@ export class AccountService {
       oldPassword: oldPass,
       newPassword: newPass
     });
+  }
+
+  /** Get Account Types */
+  public getAccountTypes() {
+    let url: string = this.config.ApiUrl + '/api/Account/types';
+    return this.http.get(url);
   }
 
 }

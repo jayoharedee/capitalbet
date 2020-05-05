@@ -62,6 +62,7 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\models\access-token.model.ts" />
+    <None Remove="ClientApp\src\app\models\account-type.model.ts" />
     <None Remove="ClientApp\src\app\models\application-role.model.ts" />
     <None Remove="ClientApp\src\app\models\application-user.model.ts" />
     <None Remove="ClientApp\src\app\models\permission.model.ts" />

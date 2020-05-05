@@ -31,6 +31,8 @@ namespace com.capital.bet.data
 
         public DbSet<OptionTransaction> OptionTransactions { get; set; }
 
+        public DbSet<AccountType> AccountTypes { get; set; }
+
 
         public string CurrentUserId { get; set; }
 
@@ -45,12 +47,17 @@ namespace com.capital.bet.data
             const string priceDecimalType = "decimal(18,2)";
             const string stockDecimalType = "decimal(17,3)";
 
+            //builder.Entity<UserAccount>()
+            //    .HasOne<AccountType>(m => m.AccountType)
+            //    .WithMany(m => m.UserAccounts)
+            //    .HasForeignKey(m => m.AcountId)
+            //    .OnDelete(DeleteBehavior.NoAction);
 
-            builder.Entity<ApplicationUser>()
-                .HasOne<UserAccount>(m => m.Account)
-                .WithOne(m => m.User)
-                .HasForeignKey<ApplicationUser>(m=>m.AccountId)
-                .OnDelete(DeleteBehavior.Cascade);
+            //builder.Entity<ApplicationUser>()
+            //    .HasOne<UserAccount>(m => m.Account)
+            //    .WithOne(m => m.User)
+            //    .HasForeignKey<ApplicationUser>(m=>m.AccountId)
+            //    .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<WalletTransaction>()
                 .HasOne<UserAccount>(m => m.Account)
@@ -110,6 +117,57 @@ namespace com.capital.bet.data
             builder.Entity<WalletTransaction>().Property(p => p.Amount).HasColumnType(priceDecimalType);
             builder.Entity<Option>().Property(p => p.Amount).HasColumnType(priceDecimalType);
             builder.Entity<Option>().Property(p => p.PayOutAmount).HasColumnType(priceDecimalType);
+
+
+
+            builder.Entity<AccountType>().HasData(new AccountType()
+            {
+                DailyTradeLimit = 10,
+                MinimumDeposit = 100,
+                MaxTradeLimit = 100,
+                MinTradeLimit = 1,
+                Bouns = 0,
+                Features = "Free Account",
+                Name = "Free Account",
+                TypeId = Guid.Parse("094FFAB4-DACA-4D25-8DD3-DC9F70056CDB"),
+                WithdrawWaitTime = 604800000
+            },
+            new AccountType()
+            {
+                DailyTradeLimit = 10,
+                MinimumDeposit = 1000,
+                MaxTradeLimit = 100,
+                MinTradeLimit = 1,
+                Bouns = (decimal)0.1,
+                Features = "Beginner Account",
+                Name = "Beginner Account",
+                TypeId = Guid.Parse("5D8E21FD-5193-41E6-BAD6-0FB6DDD3907A"),
+                WithdrawWaitTime = 172800000
+            },
+            new AccountType()
+            {
+                DailyTradeLimit = 10,
+                MinimumDeposit = 3000,
+                MaxTradeLimit = 100,
+                MinTradeLimit = 1,
+                Bouns = (decimal)0.3,
+                Features = "Standard Account",
+                Name = "Standard Account",
+                TypeId = Guid.Parse("56F920EF-D83D-4C5F-A1F5-15507D0541D8"),
+                WithdrawWaitTime = 86400000
+            }, new AccountType()
+            {
+                DailyTradeLimit = -1,
+                MinimumDeposit = 5000,
+                MaxTradeLimit = 1000,
+                MinTradeLimit = 1,
+                Bouns = (decimal)0.5,
+                Features = "Professional Account",
+                Name = "Professional Account",
+                TypeId = Guid.Parse("A705B56D-2467-47F6-843E-9D6D9537D228"),
+                WithdrawWaitTime = 86400000
+            });
+
 
             // Add Roles
             builder.Entity<ApplicationRole>().HasData(new ApplicationRole()

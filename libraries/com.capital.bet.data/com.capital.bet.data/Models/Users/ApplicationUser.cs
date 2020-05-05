@@ -33,8 +33,6 @@ namespace com.capital.bet.data.Models.Users
         /// </summary>
         [Required]
         public Guid AccountId { get; set; }
-        [JsonIgnore]
-        public virtual UserAccount Account { get; set; }
         /// <summary>
         /// Created By
         /// </summary>

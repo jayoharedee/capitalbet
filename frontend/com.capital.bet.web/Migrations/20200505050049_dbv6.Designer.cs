@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using com.capital.bet.data;
 
 namespace com.capital.bet.web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200505050049_dbv6")]
+    partial class dbv6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -812,6 +814,9 @@ namespace com.capital.bet.web.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AccountId")
+                        .IsUnique();
+
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
 
@@ -848,32 +853,32 @@ namespace com.capital.bet.web.Migrations
                         new
                         {
                             Id = "cb210f02-c9df-4bf3-8ea4-351852ddc432",
-                            ConcurrencyStamp = "e1c65d26-7aeb-4ffa-be23-71e700447621",
+                            ConcurrencyStamp = "5bade07d-f3e5-4fc3-b291-97f5476709cf",
                             Name = "administrator",
                             NormalizedName = "ADMINISTRATOR",
-                            CreatedDate = new DateTime(2020, 5, 5, 1, 9, 17, 644, DateTimeKind.Local).AddTicks(6677),
+                            CreatedDate = new DateTime(2020, 5, 5, 1, 0, 48, 938, DateTimeKind.Local).AddTicks(5403),
                             Description = "Administrative role used to run the system",
-                            UpdatedDate = new DateTime(2020, 5, 5, 1, 9, 17, 647, DateTimeKind.Local).AddTicks(795)
+                            UpdatedDate = new DateTime(2020, 5, 5, 1, 0, 48, 941, DateTimeKind.Local).AddTicks(1465)
                         },
                         new
                         {
                             Id = "974be833-b074-4778-9b74-ca83e601dbbf",
-                            ConcurrencyStamp = "db18bad7-0e96-43d0-9f05-1aea3925a020",
+                            ConcurrencyStamp = "fa9d7e7a-7dc2-45e4-a7ab-76fa75c582ee",
                             Name = "trade_moderator",
                             NormalizedName = "TRADE_MODERATOR",
-                            CreatedDate = new DateTime(2020, 5, 5, 1, 9, 17, 647, DateTimeKind.Local).AddTicks(1382),
+                            CreatedDate = new DateTime(2020, 5, 5, 1, 0, 48, 941, DateTimeKind.Local).AddTicks(2080),
                             Description = "System Moderator role for users running projects",
-                            UpdatedDate = new DateTime(2020, 5, 5, 1, 9, 17, 647, DateTimeKind.Local).AddTicks(1408)
+                            UpdatedDate = new DateTime(2020, 5, 5, 1, 0, 48, 941, DateTimeKind.Local).AddTicks(2104)
                         },
                         new
                         {
                             Id = "818352ca-d178-407b-b8f4-48ac2ee6f3ac",
-                            ConcurrencyStamp = "b79b3f42-6ae0-4b9a-b963-cad69e8a62c9",
+                            ConcurrencyStamp = "4c252873-a3a3-4fce-94f3-869f16bf7da9",
                             Name = "tradder",
                             NormalizedName = "TRADDER",
-                            CreatedDate = new DateTime(2020, 5, 5, 1, 9, 17, 647, DateTimeKind.Local).AddTicks(1429),
+                            CreatedDate = new DateTime(2020, 5, 5, 1, 0, 48, 941, DateTimeKind.Local).AddTicks(2123),
                             Description = "General user Account with minimal permissions.",
-                            UpdatedDate = new DateTime(2020, 5, 5, 1, 9, 17, 647, DateTimeKind.Local).AddTicks(1433)
+                            UpdatedDate = new DateTime(2020, 5, 5, 1, 0, 48, 941, DateTimeKind.Local).AddTicks(2127)
                         });
                 });
 
@@ -996,6 +1001,15 @@ namespace com.capital.bet.web.Migrations
                         .WithOne("Transaction")
                         .HasForeignKey("com.capital.bet.data.Models.Tranactions.OptionTransaction", "OptionId")
                         .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("com.capital.bet.data.Models.Users.ApplicationUser", b =>
+                {
+                    b.HasOne("com.capital.bet.data.Models.Accounts.UserAccount", "Account")
+                        .WithOne("User")
+                        .HasForeignKey("com.capital.bet.data.Models.Users.ApplicationUser", "AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

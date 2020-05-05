@@ -22,7 +22,12 @@ namespace com.capital.bet.data.Models.Accounts
         [Required]
         [StringLength(256, MinimumLength = 1)]
         public string UserId { get; set; }
-        public ApplicationUser User { get; set; }
+        /// <summary>
+        /// Account Type
+        /// </summary>
+        [Required]
+        public Guid TypeId { get; set; }
+        public AccountType AccountType { get; set; }
         /// <summary>
         /// User Account Balance
         /// </summary>
@@ -32,7 +37,5 @@ namespace com.capital.bet.data.Models.Accounts
         /// Wallet Transaction Navigation Property
         /// </summary>
         public virtual ICollection<WalletTransaction> WalletTransactions { get; set; }
-
-
     }
 }

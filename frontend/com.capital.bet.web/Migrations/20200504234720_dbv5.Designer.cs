@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using com.capital.bet.data;
 
 namespace com.capital.bet.web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200504234720_dbv5")]
+    partial class dbv5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -290,10 +292,6 @@ namespace com.capital.bet.web.Migrations
             modelBuilder.Entity("com.capital.bet.data.Models.Accounts.UserAccount", b =>
                 {
                     b.Property<Guid>("AcountId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("AccountTypeTypeId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("Balance")
@@ -322,8 +320,6 @@ namespace com.capital.bet.web.Migrations
                         .HasMaxLength(256);
 
                     b.HasKey("AcountId");
-
-                    b.HasIndex("AccountTypeTypeId");
 
                     b.ToTable("UserAccounts");
                 });
@@ -812,6 +808,9 @@ namespace com.capital.bet.web.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AccountId")
+                        .IsUnique();
+
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
 
@@ -848,32 +847,32 @@ namespace com.capital.bet.web.Migrations
                         new
                         {
                             Id = "cb210f02-c9df-4bf3-8ea4-351852ddc432",
-                            ConcurrencyStamp = "e1c65d26-7aeb-4ffa-be23-71e700447621",
+                            ConcurrencyStamp = "d573d707-a472-4c31-b793-52988a375b5d",
                             Name = "administrator",
                             NormalizedName = "ADMINISTRATOR",
-                            CreatedDate = new DateTime(2020, 5, 5, 1, 9, 17, 644, DateTimeKind.Local).AddTicks(6677),
+                            CreatedDate = new DateTime(2020, 5, 4, 19, 47, 19, 528, DateTimeKind.Local).AddTicks(9475),
                             Description = "Administrative role used to run the system",
-                            UpdatedDate = new DateTime(2020, 5, 5, 1, 9, 17, 647, DateTimeKind.Local).AddTicks(795)
+                            UpdatedDate = new DateTime(2020, 5, 4, 19, 47, 19, 531, DateTimeKind.Local).AddTicks(3673)
                         },
                         new
                         {
                             Id = "974be833-b074-4778-9b74-ca83e601dbbf",
-                            ConcurrencyStamp = "db18bad7-0e96-43d0-9f05-1aea3925a020",
+                            ConcurrencyStamp = "c53eeec6-c5d5-4470-b309-530876d44c95",
                             Name = "trade_moderator",
                             NormalizedName = "TRADE_MODERATOR",
-                            CreatedDate = new DateTime(2020, 5, 5, 1, 9, 17, 647, DateTimeKind.Local).AddTicks(1382),
+                            CreatedDate = new DateTime(2020, 5, 4, 19, 47, 19, 531, DateTimeKind.Local).AddTicks(4226),
                             Description = "System Moderator role for users running projects",
-                            UpdatedDate = new DateTime(2020, 5, 5, 1, 9, 17, 647, DateTimeKind.Local).AddTicks(1408)
+                            UpdatedDate = new DateTime(2020, 5, 4, 19, 47, 19, 531, DateTimeKind.Local).AddTicks(4247)
                         },
                         new
                         {
                             Id = "818352ca-d178-407b-b8f4-48ac2ee6f3ac",
-                            ConcurrencyStamp = "b79b3f42-6ae0-4b9a-b963-cad69e8a62c9",
+                            ConcurrencyStamp = "36c9675d-c4c0-4d8e-90eb-bed30e6d998b",
                             Name = "tradder",
                             NormalizedName = "TRADDER",
-                            CreatedDate = new DateTime(2020, 5, 5, 1, 9, 17, 647, DateTimeKind.Local).AddTicks(1429),
+                            CreatedDate = new DateTime(2020, 5, 4, 19, 47, 19, 531, DateTimeKind.Local).AddTicks(4267),
                             Description = "General user Account with minimal permissions.",
-                            UpdatedDate = new DateTime(2020, 5, 5, 1, 9, 17, 647, DateTimeKind.Local).AddTicks(1433)
+                            UpdatedDate = new DateTime(2020, 5, 4, 19, 47, 19, 531, DateTimeKind.Local).AddTicks(4271)
                         });
                 });
 
@@ -948,7 +947,9 @@ namespace com.capital.bet.web.Migrations
                 {
                     b.HasOne("com.capital.bet.data.Models.Accounts.AccountType", "AccountType")
                         .WithMany("UserAccounts")
-                        .HasForeignKey("AccountTypeTypeId");
+                        .HasForeignKey("AcountId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("com.capital.bet.data.Models.Accounts.WalletTransaction", b =>
@@ -996,6 +997,15 @@ namespace com.capital.bet.web.Migrations
                         .WithOne("Transaction")
                         .HasForeignKey("com.capital.bet.data.Models.Tranactions.OptionTransaction", "OptionId")
                         .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("com.capital.bet.data.Models.Users.ApplicationUser", b =>
+                {
+                    b.HasOne("com.capital.bet.data.Models.Accounts.UserAccount", "Account")
+                        .WithOne("User")
+                        .HasForeignKey("com.capital.bet.data.Models.Users.ApplicationUser", "AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

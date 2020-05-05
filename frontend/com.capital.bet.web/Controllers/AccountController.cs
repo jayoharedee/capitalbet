@@ -158,8 +158,8 @@ namespace com.capital.bet.web.Controllers
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     UserName = user.UserName,
-                    ProfileImage=user.ProfileImage,
-                    MobileNumber=user.MobileNumber,
+                    ProfileImage = user.ProfileImage,
+                    MobileNumber = user.MobileNumber,
                     AccountId = accId
                 };
                 // Create User Account
@@ -167,14 +167,14 @@ namespace com.capital.bet.web.Controllers
                 {
                     AcountId = accId,
                     UserId = auser.Id,
-                    Balance = 0
+                    Balance = request.DepositAmount
                 };
 
                 // try to create user
                 IdentityResult res = await _userManager.CreateAsync(auser, request.Password);
                 if (res.Succeeded)
                 {
-                    IdentityResult res2 = await _userManager.AddToRoleAsync(auser, "team_member");
+                    IdentityResult res2 = await _userManager.AddToRoleAsync(auser, "tradder");
                     if (res2.Succeeded)
                     {
                         // Save User Account
@@ -245,6 +245,7 @@ namespace com.capital.bet.web.Controllers
         /// </summary>
         /// <param name="username">username</param>
         /// <returns>result is true on valid otherwise false</returns>
+        [AllowAnonymous]
         [HttpGet]
         [Route("checkusername")]
         public async Task<IActionResult> UsernameValid(string username)
@@ -271,7 +272,26 @@ namespace com.capital.bet.web.Controllers
             }
         }
 
-
+        /// <summary>
+        /// Get a list of account types
+        /// </summary>
+        /// <returns>list of <see cref="AccountType"/></returns>
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("types")]
+        [ProducesResponseType(typeof(List<AccountType>), StatusCodes.Status200OK)]
+        public IActionResult GetAccountTypes()
+        {
+            try
+            {
+                return Ok(_dbManager.AccountTypes.GetAll().OrderBy(m => m.MinimumDeposit).ToList());
+            }
+            catch (Exception es)
+            {
+                _logger.LogError(es, "Failed to get the account types ...");
+                return StatusCode(500, "Failed to get the account types ...");
+            }
+        }
 
 
     }
@@ -309,5 +329,9 @@ namespace com.capital.bet.web.Controllers
         /// Account Password
         /// </summary>
         public string Password { get; set; }
+        /// <summary>
+        /// deposit Amount
+        /// </summary>
+        public decimal DepositAmount { get; set; }
     }
 }

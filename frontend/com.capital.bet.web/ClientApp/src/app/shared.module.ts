@@ -29,7 +29,7 @@ import { EscapeHtmlPipe } from './pipes/keep-html.pipe';
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
-    MDBBootstrapModulesPro.forRoot(),
+    MDBBootstrapModulesPro,
   ],
   exports: [
     EscapeHtmlPipe,
