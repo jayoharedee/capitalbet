@@ -8,6 +8,11 @@ import { AccountDepositsComponent } from './account-deposits/account-deposits.co
 import { AccountDashboardComponent } from './account-dashboard/account-dashboard.component';
 import { AccountTransfersComponent } from './account-transfers/account-transfers.component';
 import { SharedModule } from '../shared.module';
+import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from '../services/token-interceptor';
+import { AccountWithdrawComponent } from './account-withdraw/account-withdraw.component';
 
 
 @NgModule({
@@ -16,12 +21,18 @@ import { SharedModule } from '../shared.module';
     MyWalletComponent,
     AccountDepositsComponent,
     AccountDashboardComponent,
-    AccountTransfersComponent
+    AccountTransfersComponent,
+    AccountWithdrawComponent
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     SharedModule.forRoot(),
+    MDBBootstrapModulesPro.forRoot(),
     AccountRoutingModule
-  ]
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+  ],
 })
 export class AccountModule { }

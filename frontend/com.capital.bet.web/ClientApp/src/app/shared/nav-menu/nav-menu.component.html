@@ -1,10 +1,13 @@
+<mdb-progress-bar class="progress primary-color-dark" mode="indeterminate" *ngIf="showProgressBar"></mdb-progress-bar>
+
+
 <!--Navbar-->
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark" [containerInside]="false">
 
   <!-- Navbar brand -->
   <mdb-navbar-brand>
     <a class="navbar-brand" routerLink="/home">
-    <img src="/assets/nav-brand.gif" alt="Capital Bet" style="height:35px;" class="img-fluid"/>
+      <img src="/assets/nav-brand.gif" alt="Capital Bet" style="height:35px;" class="img-fluid" />
     </a>
   </mdb-navbar-brand>
 
@@ -25,6 +28,9 @@
       </li>
       <li class="nav-item" *ngIf="isAuthed">
         <a class="nav-link waves-light" routerLink="/account/deposit" mdbWavesEffect>Deposit Funds</a>
+      </li>
+      <li class="nav-item" *ngIf="isAuthed">
+        <a class="nav-link waves-light" routerLink="/account/withdraw" mdbWavesEffect>Withdraw Funds</a>
       </li>
 
       <li class="nav-item" *ngIf="!isAuthed">
@@ -63,6 +69,7 @@
               <a class="dropdown-item" routerLink="/account/mywallet">My Wallet</a>
               <a class="dropdown-item" routerLink="/account/transfers">Transfer Funds</a>
               <div class="divider dropdown-divider"></div>
+              <a class="dropdown-item" (click)="signOutAction()">Sign Out</a>
               <a class="dropdown-item" routerLink="/support">Support</a>
             </div>
           </div>

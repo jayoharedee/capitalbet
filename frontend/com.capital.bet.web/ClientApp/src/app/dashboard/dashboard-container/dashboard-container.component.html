@@ -1,0 +1,54 @@
+<!--
+  Dashboard dynamically loaded components
+
+  Base is configured with a template layout
+    Selected from already available layouts
+  Each component is loaded into a base component to handle interactions
+    Base component is used to load the dashboard component and provide a wrapper to handle position, loading, resize, movement, etc
+-->
+
+<!-- Dashboard Functions -->
+<div class="row">
+  <div class="col-12">
+
+    <!-- Components & Settings -->
+    <div class="row">
+      <div class="col-1">
+
+      </div>
+      <div class="col-6">
+        <span class="dashboard-title">{{ config.dashName }}</span>
+      </div>
+      <div class="col-2">
+
+      </div>
+      <div class="col-2">
+        <div class="float-right">
+          <a (click)="addWidgets()" mdbTooltip="Add Component" placement="left">
+            <mdb-icon fas icon="plus-square" size="2x"></mdb-icon>
+          </a>&nbsp;&nbsp;
+          <a (click)="openDashboards()" mdbTooltip="Open Save Dashboard" placement="left">
+            <mdb-icon fas icon="folder-open" size="2x"></mdb-icon>
+          </a>&nbsp;&nbsp;
+          <a (click)="dashboardSettings()" mdbTooltip="Dashboard Settings" placement="left">
+            <mdb-icon fas icon="cog" size="2x"></mdb-icon>
+          </a>&nbsp;&nbsp;
+          <a (click)="saveCurrentDashboard()" mdbTooltip="Save Current Dashboard" placement="left">
+            <mdb-icon fas icon="save" size="2x"></mdb-icon>
+          </a>
+        </div>
+      </div>
+      <div class="col-1">
+
+      </div>
+    </div>
+    <hr/>
+
+  </div>
+</div>
+<!-- Dynamic Dashboard -->
+<div class="row">
+  <div class="col-12">
+    <ng-template dash-host></ng-template>
+  </div>
+</div>

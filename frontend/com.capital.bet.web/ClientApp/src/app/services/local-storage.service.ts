@@ -6,7 +6,7 @@ import { ApplicationUser } from '../models/application-user.model';
 })
 export class LocalStorageService {
 
-  public static readonly USER_STORE: string = 'WORKSHARE_USERSTORE';
+  public static readonly USER_STORE: string = 'CAPITALBET_USERSTORE';
   private static _isInit = false;
 
   /** Has The Storage Been Initialized */

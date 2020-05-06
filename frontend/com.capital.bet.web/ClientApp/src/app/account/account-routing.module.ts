@@ -8,6 +8,7 @@ import { MyWalletComponent } from './my-wallet/my-wallet.component';
 import { AccountTransfersComponent } from './account-transfers/account-transfers.component';
 import { PathNotFoundComponent } from '../shared/path-not-found/path-not-found.component';
 import { AuthGuardService } from '../services/auth-guard.service';
+import { AccountWithdrawComponent } from './account-withdraw/account-withdraw.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,7 @@ const routes: Routes = [
     children: [
       { path: 'dashboard', component: AccountDashboardComponent, canActivate: [AuthGuardService] },
       { path: 'deposit', component: AccountDepositsComponent, canActivate: [AuthGuardService] },
+      { path: 'withdraw', component: AccountWithdrawComponent, canActivate: [AuthGuardService] },
       { path: 'mywallet', component: MyWalletComponent, canActivate: [AuthGuardService] },
       { path: 'transfers', component: AccountTransfersComponent, canActivate: [AuthGuardService] },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },

@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-8">
+    <button mdbBtn routerLink="/account/deposit" type="button" color="dark" size="sm" mdbWavesEffect>Deposit Funds</button>
+    <button mdbBtn routerLink="/account/withdraw" type="button" color="dark" size="sm" mdbWavesEffect>Withdraw Funds</button>
+  </div>
+  <div class="col-4">
+    <div class="float-right">
+      <span class="wallet-balance-title">Balance: </span>
+      <span class="wallet-balance">{{ currentBalance | currency }}</span>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <div class="wallet-transactions-container">
+      <table mdbTable>
+        <thead class="black white-text">
+          <tr>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let itm of transactions">
+            <td>{{ itm.createdDate | date: 'short' }}</td>
+            <td>
+              <div [ngSwitch]="itm.typeId">
+                <span class="text-success bold-text" *ngSwitchCase="1">Deposited Funds</span>
+                <span class="text-danger bold-text" *ngSwitchCase="2">Trading Loss</span>
+                <span class="text-success bold-text" *ngSwitchCase="3">Trading Gain</span>
+                <span class="text-danger bold-text" *ngSwitchCase="4">Withdrew Funds</span>
+              </div>
+            </td>
+            <td>
+              <div [ngSwitch]="itm.typeId">
+                <span class="bold-text" *ngSwitchCase="1">+ {{ itm.amount | currency }}</span>
+                <span class="bold-text" *ngSwitchCase="2">- {{ itm.amount | currency }}</span>
+                <span class="bold-text" *ngSwitchCase="3">+ {{ itm.amount | currency }}</span>
+                <span class="bold-text" *ngSwitchCase="4">- {{ itm.amount | currency }}</span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

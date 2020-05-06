@@ -49,8 +49,6 @@ export class AuthService {
     // get current user from application storage
     this._currentUser = this.store.CurrentUser;
     this.reevaluateLogin();
-
-    this.oauth.events.subscribe(e => (e instanceof OAuthErrorEvent) ? console.error(e) : console.warn(e));
   }
 
   private initializeOdicService() {
@@ -150,6 +148,9 @@ export class AuthService {
       user.emailConfirmed = val.email_verified;
       user.id = val.sub;
       user.userName = val.name;
+      this.store.LoginUser(user);
+      this._loginStatus.next(true);
+      this._userUpdated.next(user);
 
       this.accSrv.getCurrentUser().pipe(
         take(1)

@@ -14,6 +14,7 @@ import { NavMenuComponent } from './shared/nav-menu/nav-menu.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { LoginFormComponent } from './shared/login-form/login-form.component';
 import { EscapeHtmlPipe } from './pipes/keep-html.pipe';
+import { StocksService } from './services/stocks.service';
 
 
 
@@ -51,6 +52,7 @@ export class SharedModule {
         AccountService,
         LocalStorageService,
         AuthGuardService,
+        StocksService,
         MDBSpinningPreloader,
       ]
     };

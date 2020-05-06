@@ -1,0 +1,37 @@
+<mdb-card>
+  <mdb-card-header class="stylish-color">
+    <span class="title-text">Update Component Settings</span>
+  </mdb-card-header>
+  <mdb-card-body>
+
+    <form [formGroup]="updateGroup">
+
+      <div class="md-form">
+        <input type="text" class="form-control" formControlName="title" mdbInput />
+        <label>Title</label>
+      </div>
+
+      <div class="row">
+        <div class="col-3">
+          <span>Currency</span>
+        </div>
+        <div class="col-6">
+          <select class="browser-default custom-select" formControlName="cur">
+            <option [value]="itm.value" *ngFor="let itm of currencyOptions">{{ itm.label }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row" style="height:25px;">&nbsp;</div>
+
+      <div class="row">
+        <div class="col-12">
+          <button mdbBtn (click)="updateTitle()" type="button" color="dark" block="true" mdbWavesEffect>Update</button>
+          <button mdbBtn (click)="modalRef.hide()" type="button" color="dark" block="true" outline="true" mdbWavesEffect>Close</button>
+        </div>
+      </div>
+
+    </form>
+
+  </mdb-card-body>
+</mdb-card>

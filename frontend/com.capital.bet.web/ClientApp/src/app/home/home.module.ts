@@ -11,6 +11,8 @@ import { MDBBootstrapModulesPro } from 'ng-uikit-pro-standard';
 import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
 import { RiskStatementComponent } from './risk-statement/risk-statement.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TokenInterceptor } from '../services/token-interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 @NgModule({
@@ -28,6 +30,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     SharedModule.forRoot(),
     MDBBootstrapModulesPro.forRoot(),
     HomeRoutingModule
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ],
   entryComponents: [
     TermsAndConditionsComponent,

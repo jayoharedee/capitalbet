@@ -4,6 +4,14 @@ import { AuthService } from '../../services/auth.service';
 import { Subscription } from 'rxjs';
 import { MDBModalService, MDBModalRef } from 'ng-uikit-pro-standard';
 import { LoginFormComponent } from '../login-form/login-form.component';
+import {
+  Event,
+  NavigationCancel,
+  NavigationEnd,
+  NavigationError,
+  NavigationStart,
+  Router
+} from '@angular/router';
 
 @Component({
   selector: 'app-nav-menu',
@@ -12,7 +20,7 @@ import { LoginFormComponent } from '../login-form/login-form.component';
 })
 export class NavMenuComponent implements OnInit, OnDestroy {
 
-
+  showProgressBar: boolean = false;
   loginDialog: MDBModalRef;
 
   isAuthed: boolean = false;
@@ -24,6 +32,7 @@ export class NavMenuComponent implements OnInit, OnDestroy {
 
   constructor(private conf: ConfigService,
     private modalSrv: MDBModalService,
+    private router: Router,
     private auth: AuthService) { }
     
 
@@ -38,6 +47,26 @@ export class NavMenuComponent implements OnInit, OnDestroy {
         this.isAuthed = loggedIn;
       })
     );
+
+    this.subs.push(
+    this.router.events.subscribe((event: Event) => {
+      switch (true) {
+        case event instanceof NavigationStart: {
+          this.showProgressBar = true;
+          break;
+        }
+
+        case event instanceof NavigationEnd:
+        case event instanceof NavigationCancel:
+        case event instanceof NavigationError: {
+          this.showProgressBar = false;
+          break;
+        }
+        default: {
+          break;
+        }
+      }
+    }));
   }
 
   ngOnDestroy(): void {
@@ -58,6 +87,12 @@ export class NavMenuComponent implements OnInit, OnDestroy {
       containerClass: 'right',
       animated: true
     });
+  }
+
+
+  signOutAction() {
+    this.auth.signOut();
+    this.router.navigateByUrl('/home/index');
   }
 
 }

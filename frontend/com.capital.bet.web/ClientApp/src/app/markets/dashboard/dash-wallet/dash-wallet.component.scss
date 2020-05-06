@@ -1,0 +1,25 @@
+
+
+.wallet-transactions-container {
+    max-height:400px;
+    min-height:200px;
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+
+.bold-text{
+    font-weight:bold;
+}
+
+.wallet-balance-title {
+  font-size: large;
+  font-weight: bold;
+  color: dimgray;
+}
+
+.wallet-balance {
+  font-size: large;
+  font-weight: bold;
+  color: cornflowerblue;
+  margin-right: 20px;
+}

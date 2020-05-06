@@ -319,6 +319,33 @@ namespace com.capital.bet.data
                 PayOutRate = new decimal(0.6)
             });
 
+            builder.Entity<TransactionType>().HasData(
+                new TransactionType()
+                {
+                    TypeId=1,
+                    Name="Deposit Funds",
+                    Deacription="The user deposited funds into their account."
+                },
+                new TransactionType()
+                {
+                    TypeId = 2,
+                    Name = "Trade Loss",
+                    Deacription = "The user has had funds removed from a failed trade."
+                },
+                new TransactionType()
+                {
+                    TypeId = 3,
+                    Name = "Trade Gain",
+                    Deacription = "The user has gained funds in their account from a successful trade."
+                },
+                new TransactionType()
+                {
+                    TypeId = 4,
+                    Name = "Withdraw Funds",
+                    Deacription = "The user has withdrawn funds from their account."
+                }
+                );
+
         }
 
 

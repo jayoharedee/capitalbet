@@ -1,1 +1,106 @@
-<p>my-wallet works!</p>
+<div class="row">
+  <div class="col-lg-3 col-md-12">
+
+    <mdb-card>
+      <mdb-card-header class="stylish-color">
+        <span class="card-title">Wallet Balance</span>
+      </mdb-card-header>
+      <mdb-card-body>
+
+        <div class="row">
+          <div class="col-6">Current Balance</div>
+          <div class="col-6">{{ currentBalance | currency }}</div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">Last Deposit</div>
+          <div class="col-6">{{ lastDeposit | currency }}</div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">Total Deposits</div>
+          <div class="col-6">{{ totalDeposits | currency }}</div>
+        </div>
+
+      </mdb-card-body>
+    </mdb-card>
+    <div class="row" style="height:40px;"></div>
+    <mdb-card>
+      <mdb-card-header class="stylish-color">
+        <span class="card-title">Wallet Tools</span>
+      </mdb-card-header>
+      <mdb-card-body>
+
+        <div class="row">
+          <div class="col-12">
+            <a routerLink="/account/deposit">Deposit Funds</a><br />
+            <a routerLink="/account/withdraw">Withdraw Funds</a><br />
+          </div>
+        </div>
+
+      </mdb-card-body>
+    </mdb-card>
+
+  </div>
+  <div class="col-lg-9 col-md-12">
+
+    <mdb-card>
+      <mdb-card-header class="stylish-color">
+        <span class="card-title">Wallet Transactions</span>
+      </mdb-card-header>
+      <mdb-card-body>
+        <!-- button and icons -->
+        <div class="row">
+          <div class="col-12">
+
+          </div>
+        </div>
+        <!-- Wallet transactions table -->
+        <div class="row">
+          <div class="col-12">
+
+            <table mdbTable>
+              <thead class="black white-text">
+                <tr>
+                  <th style="width:20%">Date</th>
+                  <th style="width:20%;">Type</th>
+                  <th style="width:20%;">Amount</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let itm of transactions">
+                  <td>{{ itm.createdDate | date: 'short' }}</td>
+                  <td>
+                    <div [ngSwitch]="itm.typeId">
+                      <span *ngSwitchCase="1">Deposited Funds</span>
+                      <span *ngSwitchCase="2">Trade Loss</span>
+                      <span *ngSwitchCase="3">Trade Gain</span>
+                      <span *ngSwitchCase="4">Withdrew Funds</span>
+                    </div>
+                  </td>
+                  <td>
+
+                    <div [ngSwitch]="itm.typeId">
+                      <span class="text-success bold-text" *ngSwitchCase="1">+ {{ itm.amount | currency }}</span>
+                      <span class="text-danger bold-text" *ngSwitchCase="2">- {{ itm.amount | currency }}</span>
+                      <span class="text-success bold-text" *ngSwitchCase="3">+ {{ itm.amount | currency }}</span>
+                      <span class="text-danger bold-text" *ngSwitchCase="4">- {{ itm.amount | currency }}</span>
+                    </div>
+                  
+                  </td>
+                  <td>
+                    <span class="small-text">{{ itm.note }}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+
+          </div>
+        </div>
+      </mdb-card-body>
+    </mdb-card>
+
+  </div>
+</div>

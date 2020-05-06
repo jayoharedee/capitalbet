@@ -61,11 +61,23 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\dashboard\directives\dash-host.directive.ts" />
+    <None Remove="ClientApp\src\app\dashboard\directives\dash-item-host.directive.ts" />
+    <None Remove="ClientApp\src\app\dashboard\models\dash-data.ts" />
+    <None Remove="ClientApp\src\app\dashboard\models\dash-item.ts" />
+    <None Remove="ClientApp\src\app\dashboard\models\dash-template.ts" />
+    <None Remove="ClientApp\src\app\dashboard\models\dashboard-config.model.ts" />
+    <None Remove="ClientApp\src\app\dashboard\models\dashboard-item.model.ts" />
+    <None Remove="ClientApp\src\app\dashboard\models\dashboard-template.model.ts" />
+    <None Remove="ClientApp\src\app\markets\models\stock-data.ts" />
+    <None Remove="ClientApp\src\app\markets\models\trade-settings.model.ts" />
     <None Remove="ClientApp\src\app\models\access-token.model.ts" />
     <None Remove="ClientApp\src\app\models\account-type.model.ts" />
     <None Remove="ClientApp\src\app\models\application-role.model.ts" />
     <None Remove="ClientApp\src\app\models\application-user.model.ts" />
     <None Remove="ClientApp\src\app\models\permission.model.ts" />
+    <None Remove="ClientApp\src\app\models\stock-type.model.ts" />
+    <None Remove="ClientApp\src\app\models\wallet-transaction.model.ts" />
     <None Remove="ClientApp\src\app\pipes\keep-html.pipe.ts" />
     <None Remove="ClientApp\src\app\services\auth-guard.service.ts" />
     <None Remove="ClientApp\src\app\services\jwt-helper.ts" />
@@ -75,6 +87,10 @@
   <ItemGroup>
     <ProjectReference Include="..\..\libraries\com.capital.bet.data\com.capital.bet.data\com.capital.bet.data.csproj" />
     <ProjectReference Include="..\..\libraries\com.capital.bet.lib\com.capital.bet.lib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\app\dashboard\services\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

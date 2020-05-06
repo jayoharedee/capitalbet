@@ -162,13 +162,25 @@ namespace com.capital.bet.web.Controllers
                     MobileNumber = user.MobileNumber,
                     AccountId = accId
                 };
+
+                AccountType typ = _dbManager.AccountTypes.Get(request.AccountType);
+                decimal deposit = (typ.Bouns * request.DepositAmount) + request.DepositAmount;
+
                 // Create User Account
                 UserAccount account = new UserAccount()
                 {
                     AcountId = accId,
                     UserId = auser.Id,
-                    Balance = request.DepositAmount,
+                    Balance = deposit,
                     TypeId = request.AccountType
+                };
+
+                WalletTransaction trs = new WalletTransaction()
+                {
+                    TypeId = 1, //deposit funds
+                    AccountId = accId,
+                    Amount=request.DepositAmount,
+                    Note=$"Initial Account Deposit with a bonus of ${typ.Bouns * request.DepositAmount}"
                 };
 
                 // try to create user
@@ -180,6 +192,8 @@ namespace com.capital.bet.web.Controllers
                     {
                         // Save User Account
                         _dbManager.UserAccounts.Add(account);
+                        // save wallet transaction
+                        _dbManager.WalletTranactions.Add(trs);
                         _dbManager.SaveChanges();
                         // return user object
                         auser.PasswordHash = "";

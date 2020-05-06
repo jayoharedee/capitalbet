@@ -390,6 +390,32 @@ namespace com.capital.bet.web.Migrations
                     b.HasKey("TypeId");
 
                     b.ToTable("TransactionTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            TypeId = 1,
+                            Deacription = "The user deposited funds into their account.",
+                            Name = "Deposit Funds"
+                        },
+                        new
+                        {
+                            TypeId = 2,
+                            Deacription = "The user has had funds removed from a failed trade.",
+                            Name = "Trade Loss"
+                        },
+                        new
+                        {
+                            TypeId = 3,
+                            Deacription = "The user has gained funds in their account from a successful trade.",
+                            Name = "Trade Gain"
+                        },
+                        new
+                        {
+                            TypeId = 4,
+                            Deacription = "The user has withdrawn funds from their account.",
+                            Name = "Withdraw Funds"
+                        });
                 });
 
             modelBuilder.Entity("com.capital.bet.data.Models.Stocks.Stock", b =>
@@ -848,32 +874,32 @@ namespace com.capital.bet.web.Migrations
                         new
                         {
                             Id = "cb210f02-c9df-4bf3-8ea4-351852ddc432",
-                            ConcurrencyStamp = "1ee85519-ab4d-4fd2-bd03-1657929a7959",
+                            ConcurrencyStamp = "21ec1ba5-bddc-4087-8782-85c4427c2d1f",
                             Name = "administrator",
                             NormalizedName = "ADMINISTRATOR",
-                            CreatedDate = new DateTime(2020, 5, 5, 10, 38, 59, 38, DateTimeKind.Local).AddTicks(6058),
+                            CreatedDate = new DateTime(2020, 5, 5, 11, 54, 34, 351, DateTimeKind.Local).AddTicks(2902),
                             Description = "Administrative role used to run the system",
-                            UpdatedDate = new DateTime(2020, 5, 5, 10, 38, 59, 41, DateTimeKind.Local).AddTicks(2473)
+                            UpdatedDate = new DateTime(2020, 5, 5, 11, 54, 34, 353, DateTimeKind.Local).AddTicks(7765)
                         },
                         new
                         {
                             Id = "974be833-b074-4778-9b74-ca83e601dbbf",
-                            ConcurrencyStamp = "4a5e83ec-cfee-47a5-9838-bd3e980cb96a",
+                            ConcurrencyStamp = "2153237d-e3d3-41d3-a317-8c3e43e1a6b9",
                             Name = "trade_moderator",
                             NormalizedName = "TRADE_MODERATOR",
-                            CreatedDate = new DateTime(2020, 5, 5, 10, 38, 59, 41, DateTimeKind.Local).AddTicks(3171),
+                            CreatedDate = new DateTime(2020, 5, 5, 11, 54, 34, 353, DateTimeKind.Local).AddTicks(8457),
                             Description = "System Moderator role for users running projects",
-                            UpdatedDate = new DateTime(2020, 5, 5, 10, 38, 59, 41, DateTimeKind.Local).AddTicks(3193)
+                            UpdatedDate = new DateTime(2020, 5, 5, 11, 54, 34, 353, DateTimeKind.Local).AddTicks(8480)
                         },
                         new
                         {
                             Id = "818352ca-d178-407b-b8f4-48ac2ee6f3ac",
-                            ConcurrencyStamp = "9bfd799a-d704-45cc-9ff9-921e2afb99a1",
+                            ConcurrencyStamp = "ed17b6ee-a35e-41e2-9c8e-6e7ab23fd45d",
                             Name = "tradder",
                             NormalizedName = "TRADDER",
-                            CreatedDate = new DateTime(2020, 5, 5, 10, 38, 59, 41, DateTimeKind.Local).AddTicks(3233),
+                            CreatedDate = new DateTime(2020, 5, 5, 11, 54, 34, 353, DateTimeKind.Local).AddTicks(8500),
                             Description = "General user Account with minimal permissions.",
-                            UpdatedDate = new DateTime(2020, 5, 5, 10, 38, 59, 41, DateTimeKind.Local).AddTicks(3237)
+                            UpdatedDate = new DateTime(2020, 5, 5, 11, 54, 34, 353, DateTimeKind.Local).AddTicks(8504)
                         });
                 });
 
