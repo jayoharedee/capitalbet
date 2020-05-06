@@ -1,7 +1,12 @@
-import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { TradeSettings } from '../../models/trade-settings.model';
 import * as Highcharts from 'highcharts';
 import HC_stock from 'highcharts/modules/stock';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Subscription } from 'rxjs';
+import { StockType } from '../../../models/stock-type.model';
+import { StocksService } from '../../../services/stocks.service';
 HC_stock(Highcharts);
 
 @Component({
@@ -10,11 +15,14 @@ HC_stock(Highcharts);
   styleUrls: ['./dash-trade-widget.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class DashTradeWidgetComponent implements OnInit {
+export class DashTradeWidgetComponent implements OnInit, OnDestroy {
 
 
   @Input() config: TradeSettings;
 
+  stockTypes: StockType[] = [];
+
+  betGroup: FormGroup;
 
   highcharts = Highcharts;
   chartOptions = {
@@ -59,13 +67,36 @@ export class DashTradeWidgetComponent implements OnInit {
     ]
   };
 
+  subs: Subscription[] = [];
 
-  constructor() { }
+  constructor(private stockSrv: StocksService,
+    private fb: FormBuilder)
+  {
+    this.betGroup = this.fb.group({
+      currency:[0],
+      amount: [0],
+      period: [2],
+    });
+  }
+    
 
   ngOnInit(): void {
     if (this.config != null) {
       console.log(this.config);
+    }
 
+    this.subs.push(
+      this.stockSrv.getStockTypes().subscribe((stks: StockType[]) => {
+        this.stockTypes = stks;
+      })
+    );
+
+  }
+
+
+  ngOnDestroy(): void {
+    for (let i of this.subs) {
+      i.unsubscribe();
     }
   }
 
