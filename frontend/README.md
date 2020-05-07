@@ -16,5 +16,7 @@ Using the command line type **dotnet watch run** to start the development server
 ## Dashboard Component
 [Documentation](https://github.com/jayoharedee/capitalbet/tree/master/frontend/com.capital.bet.web/ClientApp/src/app/dashboard)
 
+## Signalr Hubs
+[Documentation](https://github.com/jayoharedee/capitalbet/tree/master/frontend/com.capital.bet.web/Hubs)
 
 
