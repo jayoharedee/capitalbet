@@ -3,6 +3,8 @@ import { DashboardConfig } from '../models/dashboard-config.model';
 import { Subject, Observable } from 'rxjs';
 import { DashboardTemplate } from '../models/dashboard-template.model';
 import { DashboardItem } from '../models/dashboard-item.model';
+import { DashboardStorage } from '../models/dashboard-storeage';
+import { DashboardLocalStorage } from './dashboard-local-storage';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +14,9 @@ export class DashboardService {
   private _avaComponents: DashboardItem[] = [];
   private _configFile: DashboardConfig = null;
   private _currentConfig: Subject<DashboardConfig> = new Subject();
+
+  public StorageHelper: DashboardStorage;
+
 
   /** monitor changes to the dashboard configuration */
   public get currentConfig(): Observable<DashboardConfig> {
@@ -29,15 +34,30 @@ export class DashboardService {
   }
 
 
-  constructor() { }
+  constructor()
+  {
+    if (this.StorageHelper == null)
+      this.StorageHelper = new DashboardLocalStorage('dashboard_key');
+    if (this._configFile == null)
+      this._configFile = this.StorageHelper.loadDefaultConfig();
+
+    if (this._configFile != null)
+      this.loadConfig(this._configFile);
+  }
 
   /**
    * Load Configuration File 
    * @param config Configuration Data
    */
   public loadConfig(config: DashboardConfig) {
+    this.StorageHelper.saveConfigFile(config);
     this._configFile = config;
     this._currentConfig.next(config);
+  }
+
+  /** Reload the current layout */
+  public reloadLayout() {
+    this._currentConfig.next(this._configFile);
   }
 
   /**

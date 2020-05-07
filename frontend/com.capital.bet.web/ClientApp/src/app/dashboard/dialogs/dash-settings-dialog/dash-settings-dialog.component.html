@@ -3,6 +3,40 @@
     <span class="title-text">Dashboard Settings</span>
   </mdb-card-header>
   <mdb-card-body>
+    <form [formGroup]="settingsGroup">
+      <div class="md-form">
+        <input type="text" class="form-control" mdbInput  formControlName="title"/>
+        <label>Title</label>
+      </div>
 
+      <div class="md-form">
+        <textarea type="text" class="form-control" mdbInput rows="5" formControlName="desc"></textarea>
+        <label>Notes</label>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <span class="form-title-text">Layout Template</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <select class="browser-default custom-select" formControlName="template">
+            <option value="TwoColomnRowBottomComponent">Two Equal Columns with One Row</option>
+            <option value="TwoColumnTemplateComponent">Two Equal Columns</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row" style="height:25px;">&nbsp;</div>
+
+      <div class="row">
+        <div class="col-12">
+          <button (click)="onUpdateSettingsAction()" mdbBtn type="button" color="dark" block="true" mdbWavesEffect>Update Dashboard</button>
+          <button (click)="modalRef.hide()" mdbBtn type="button" color="dark" outline="true" block="true" mdbWavesEffect>Close</button>
+        </div>
+      </div>
+    </form>
   </mdb-card-body>
 </mdb-card>

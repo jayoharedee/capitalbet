@@ -14,6 +14,8 @@ export class MyWalletComponent implements OnInit, OnDestroy {
   lastDeposit: number = 0;
   totalDeposits: number = 0;
 
+  transactionsLoading: boolean = false;
+
 
   transactions: WalletTransaction[] = [];
 
@@ -24,27 +26,41 @@ export class MyWalletComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subs = [];
+    this.transactionsLoading = true;
     this.subs.push(
       this.walletSrv.getUserWalletTransactions().subscribe((result: WalletTransaction[]) => {
         this.transactions = result;
+        this.transactionsLoading = false;
       })
     );
 
     this.subs.push(
       this.walletSrv.getUserBalance().subscribe((result: any) => {
-        this.currentBalance = result.balance;
+        try {
+          this.currentBalance = result.balance;
+        } catch{
+          this.currentBalance = -1;
+        }
       })
     );
 
     this.subs.push(
       this.walletSrv.getUserLastDeposit().subscribe((result: WalletTransaction) => {
-        this.lastDeposit = result.amount;
+        try {
+          this.lastDeposit = result.amount;
+        } catch{
+          this.lastDeposit = -1;
+        }
       })
     );
 
     this.subs.push(
-      this.walletSrv.getUserTotalDeposit().subscribe((result:any) => {
-        this.totalDeposits = result.balance;
+      this.walletSrv.getUserTotalDeposit().subscribe((result: any) => {
+        try {
+          this.totalDeposits = result.balance;
+        } catch{
+          this.totalDeposits = -1;
+        }
       })
     );
   }

@@ -12,4 +12,7 @@ export class DashboardConfig {
   public dashNote: string;
   /** Dashboard Template */
   public dashTemplate: DashboardTemplate;
+
+
+  
 }

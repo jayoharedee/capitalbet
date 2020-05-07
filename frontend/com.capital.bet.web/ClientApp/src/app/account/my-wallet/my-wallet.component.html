@@ -9,17 +9,20 @@
 
         <div class="row">
           <div class="col-6">Current Balance</div>
-          <div class="col-6">{{ currentBalance | currency }}</div>
+          <div class="col-6" *ngIf="currentBalance >= 0">{{ currentBalance | currency }}</div>
+          <div class="col-6 text-danger" *ngIf="currentBalance < 0">Unknown Balance</div>
         </div>
 
         <div class="row">
           <div class="col-6">Last Deposit</div>
-          <div class="col-6">{{ lastDeposit | currency }}</div>
+          <div class="col-6" *ngIf="lastDeposit >= 0">{{ lastDeposit | currency }}</div>
+          <div class="col-6 text-danger" *ngIf="lastDeposit < 0">Unknown Balance</div>
         </div>
 
         <div class="row">
           <div class="col-6">Total Deposits</div>
-          <div class="col-6">{{ totalDeposits | currency }}</div>
+          <div class="col-6" *ngIf="totalDeposits >= 0">{{ totalDeposits | currency }}</div>
+          <div class="col-6 text-danger" *ngIf="totalDeposits < 0">Unknown Balance</div>
         </div>
 
       </mdb-card-body>
@@ -69,6 +72,19 @@
                 </tr>
               </thead>
               <tbody>
+                <tr *ngIf="transactionsLoading">
+                  <td colspan="1">
+                    <mdb-spinner spinnerColor="blue"></mdb-spinner>
+                  </td>
+                  <td colspan="2">
+                    <span class="loading-text">Loading Wallet Transactions</span>
+                  </td>
+                </tr>
+                <tr *ngIf="transactions.length == 0 && ! transactionsLoading">
+                  <td colspan="3">
+                    <span class="text-info">No Wallet Transactions were found ...</span>
+                  </td>
+                </tr>
                 <tr *ngFor="let itm of transactions">
                   <td>{{ itm.createdDate | date: 'short' }}</td>
                   <td>

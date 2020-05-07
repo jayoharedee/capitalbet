@@ -12,11 +12,37 @@ import { SaveDashDialogComponent } from '../dialogs/save-dash-dialog/save-dash-d
 import { DashSettingsDialogComponent } from '../dialogs/dash-settings-dialog/dash-settings-dialog.component';
 import { DashboardService } from '../services/dashboard.service';
 import { Subscription } from 'rxjs';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  // ...
+} from '@angular/animations';
+
 
 @Component({
   selector: 'dashboard-container',
   templateUrl: './dashboard-container.component.html',
-  styleUrls: ['./dashboard-container.component.scss']
+  styleUrls: ['./dashboard-container.component.scss'],
+  animations: [
+    trigger('openClose', [
+      state('open', style({
+        opacity: 1,
+      })),
+      state('closed', style({
+        height: '0px',
+        opacity: 0,
+      })),
+      transition('open => closed', [
+        animate('1s')
+      ]),
+      transition('closed => open', [
+        animate('0.5s')
+      ]),
+    ]),
+  ]
 })
 export class DashboardContainerComponent implements OnInit, OnDestroy {
   @ViewChild(DashHostDirective, { static: true }) templateHost: DashHostDirective;
@@ -26,6 +52,7 @@ export class DashboardContainerComponent implements OnInit, OnDestroy {
   openDashDialog: MDBModalRef;
   saveDashDialog: MDBModalRef;
   dashSettingsDialog: MDBModalRef;
+  dashboardToolsOpen: boolean = true;
 
 
   /** Available Dashboard Items */
@@ -77,6 +104,10 @@ export class DashboardContainerComponent implements OnInit, OnDestroy {
   }
 
 
+  toggelTools() {
+    this.dashboardToolsOpen = !this.dashboardToolsOpen;
+  }
+
   /** layout the dashboard */
   private layoutDashboard() {
     this.templateHost.viewContainerRef.clear();
@@ -103,8 +134,39 @@ export class DashboardContainerComponent implements OnInit, OnDestroy {
       ignoreBackdropClick: false,
       class: 'modal-side modal-top-right',
       containerClass: 'right',
-      animated: true
+      animated: true,
+      data: {
+        availableItems: this.availableItem,
+        zoneCount: this.config.dashTemplate.zonesCount
+      }
     });
+    // handle new added items
+    this.subs.push(
+      this.addWidgetDialog.content.itemAddedRequest.subscribe((item: DashboardItem) => {
+        this.addWidgetDialog.hide();
+        if (this.config.dashTemplate.zonesCount > item.order) { // make sure it can fit in requested zone
+          this.config.dashTemplate.zoneItems[item.order].push({
+            id: item.id + this.config.dashTemplate.zoneItems[item.order].length,
+            component: item.component,
+            config: item.config,
+            order: this.config.dashTemplate.zoneItems[item.order].length,
+            settingsDialog: item.settingsDialog,
+            title: item.title
+          });
+          this.dashSrv.loadConfig(this.config);
+        } else { // every template has at least one zone 
+          this.config.dashTemplate.zoneItems[0].push({
+            id: item.id + this.config.dashTemplate.zoneItems[item.order].length,
+            component: item.component,
+            config: item.config,
+            order: this.config.dashTemplate.zoneItems[item.order].length,
+            settingsDialog: item.settingsDialog,
+            title: item.title
+          });
+          this.dashSrv.loadConfig(this.config);
+        }
+      })
+    );
   }
 
   /** Open a saved dashboard dialog */
@@ -128,11 +190,23 @@ export class DashboardContainerComponent implements OnInit, OnDestroy {
       keyboard: true,
       focus: true,
       show: false,
-      ignoreBackdropClick: false,
+      ignoreBackdropClick: true,
       class: 'modal-side modal-top-right',
       containerClass: 'right',
-      animated: true
+      animated: true,
+      data: {
+        config:this.config
+      }
     });
+
+    this.subs.push(
+      this.dashSettingsDialog.content.configUpdated.subscribe((cfg: DashboardConfig) => {
+        console.log(cfg);
+        this.dashSettingsDialog.hide();
+        this.config = cfg;
+        this.dashSrv.loadConfig(cfg);
+      })
+    );
   }
 
   /** open save dashboard dialog */

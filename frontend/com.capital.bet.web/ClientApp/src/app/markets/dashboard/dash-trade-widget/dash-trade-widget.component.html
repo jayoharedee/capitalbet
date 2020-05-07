@@ -1,12 +1,12 @@
 <form [formGroup]="betGroup">
-  <div class="row">
+  <div class="row tools-backgraound ">
     <div class="col-4">
       <div class="row">
         <div class="col-6">
-          <label class="dash-form-label">Currency</label>
+          <label class="dash-form-label float-right">Currency</label>
         </div>
         <div class="col-6">
-          <select class="browser-default custom-select">
+          <select class="browser-default custom-select" (change)="currencyChaged($event.target.value)" formControlName="currency">
             <option [value]="itm.stockId" *ngFor="let itm of stockTypes">{{ itm.name }}</option>
           </select>
         </div>
@@ -16,10 +16,10 @@
     <div class="col-4">
       <div class="row">
         <div class="col-6">
-          <label class="dash-form-label">Period</label>
+          <label class="dash-form-label float-right">Period</label>
         </div>
         <div class="col-6">
-          <select class="browser-default custom-select">
+          <select class="browser-default custom-select" fromControlName="period">
             <option value="1">2 Min</option>
             <option value="1">5 Min</option>
             <option value="1">15 Min</option>
@@ -27,39 +27,63 @@
         </div>
       </div>
     </div>
-    <div class="col-4">
-      
+
+    <div class="col-2"></div>
+
+    <div class="col-2 trades-title">
+      <span class="float-right">Trades</span>
+    </div>
+  </div>
+
+
+  <div class="row ">
+    <div class="col-10">
+      <div style="display: block">
+        <canvas mdbChart
+                [chartType]="chartType"
+                [datasets]="chartDatasets"
+                [labels]="chartLabels"
+                [options]="chartOptions"
+                [legend]="true"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)">
+        </canvas>
+      </div>
+    </div>
+    <div class="col-2 tools-backgraound">
+      <!-- amount -->
+      <div class="row">
+        <div class="col-12">
+          <label class="dash-form-label">Amount (<span class="text-info" style="font-size:x-small;">{{ userBalance | currency }}</span>)</label>
+          <input type="number" class="form-control" formControlName="amount" (change)="onamountChnaged($event.target.value)" mdbInput />
+        </div>
+      </div>
+      <div class="row" style="height:20px;"></div>
+
+      <!-- Earnings -->
+      <div class="row">
+        <div class="col-12">
+          <span class="eraning-title-text">Potential Earnings</span><br/>
+          <span class="earning-text float-right">{{ potentialEarning | currency }}</span>
+        </div>
+      </div>
+      <div class="row" style="height:15px;"></div>
+      <!-- percentage -->
+      <div class="row">
+        <div class="col-12">
+          <span class="eraning-title-text">Payout Rate</span><br />
+          <span class="earning-text float-right">{{ (earningRate*100) }}%</span>
+        </div>
+      </div>
+      <div class="row" style="height:20px;"></div>
+      <!-- Bid Buttons -->
+      <div class="row">
+        <div class="col-12">
+          <button mdbBtn type="button" color="success" mdbWavesEffect><mdb-icon fas icon="chevron-up" size="lg"></mdb-icon> HIGH</button>
+          <button mdbBtn type="button" color="danger" mdbWavesEffect>LOW <mdb-icon fas icon="chevron-down" size="lg"></mdb-icon></button>
+        </div>
+      </div>
+
     </div>
   </div>
 </form>
-
-<div class="row">
-  <div class="col-10">
-    <highcharts-chart [Highcharts]="highcharts"
-                      [options]="chartOptions"
-                      style="width: 100%; height: 400px; display: block;">
-    </highcharts-chart>
-  </div>
-  <div class="col-2">
-
-    <div class="row">
-      <div class="col-12">
-        <label class="dash-form-label">Amount</label>
-        <input type="number" class="form-control" mdbInput />
-      </div>
-    </div>
-
-    <!-- Bid Buttons -->
-
-
-
-
-
-
-
-
-
-
-
-  </div>
-</div>

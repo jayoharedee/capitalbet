@@ -22,6 +22,27 @@ namespace com.capital.bet.micro.stocks.Services
     /// </summary>
     public class StockPuller : IHostedService, IDisposable
     {
+        private List<StockRate> stockRatesSimulated = new List<StockRate>();
+
+        private List<StockRate> AUD_CAD = new List<StockRate>();
+        private List<StockRate> AUD_JPY = new List<StockRate>();
+        private List<StockRate> AUD_USD = new List<StockRate>();
+        private List<StockRate> BTC_EUR = new List<StockRate>();
+        private List<StockRate> BTC_USD = new List<StockRate>();
+        private List<StockRate> CAD_JPY = new List<StockRate>();
+        private List<StockRate> EUR_AUD = new List<StockRate>();
+        private List<StockRate> EUR_CAD = new List<StockRate>();
+        private List<StockRate> EUR_GBP = new List<StockRate>();
+        private List<StockRate> EUR_JPY = new List<StockRate>();
+        private List<StockRate> EUR_USD = new List<StockRate>();
+        private List<StockRate> GBP_JPY = new List<StockRate>();
+        private List<StockRate> GBP_USD = new List<StockRate>();
+        private List<StockRate> USD_CAD = new List<StockRate>();
+        private List<StockRate> USD_JPY = new List<StockRate>();
+
+
+        private  int currentIndex = 0;
+
         private readonly ILogger _logger;
         private IOptions<ServiceConfiguration> _serviceConfiguration;
         private readonly IServiceProvider _services;
@@ -101,22 +122,108 @@ namespace com.capital.bet.micro.stocks.Services
         private async void DoWork(object state)
         {
             var count = Interlocked.Increment(ref executionCount);
-            // grab the quotes
-            HttpClient client = new HttpClient();
-            var result = await client.GetAsync($"https://www.live-rates.com/api/price?rate={stockTickers}&key=730aa45ccc");
-            if (result.IsSuccessStatusCode)
+
+            if (!this._serviceConfiguration.Value.SimulateData)
             {
-                string data = await result.Content.ReadAsStringAsync();
-                List<StockRate> rates = Newtonsoft.Json.JsonConvert.DeserializeObject<List<StockRate>>(data);
-                rateQueue.Enqueue(rates);
-                if (connection.State == HubConnectionState.Connected)
-                    await connection.SendAsync("SendNewStocks", rates);
+                // grab the quotes
+                HttpClient client = new HttpClient();
+                var result = await client.GetAsync($"https://www.live-rates.com/api/price?rate={stockTickers}&key=730aa45ccc");
+                if (result.IsSuccessStatusCode)
+                {
+                    string data = await result.Content.ReadAsStringAsync();
+                    List<StockRate> rates = Newtonsoft.Json.JsonConvert.DeserializeObject<List<StockRate>>(data);
+                    rateQueue.Enqueue(rates);
+                    _logger.LogInformation(Newtonsoft.Json.JsonConvert.SerializeObject(rates));
+                    if (connection.State == HubConnectionState.Connected)
+                        await connection.SendAsync("SendNewStocks", rates);
+                }
+                else
+                {
+                    string error = $"Stock Feed Returned: {result.StatusCode} with {await result.Content.ReadAsStringAsync()}";
+                    _logger.LogError(error);
+                }
             }
             else
             {
-                string error = $"Stock Feed Returned: {result.StatusCode} with {await result.Content.ReadAsStringAsync()}";
-                _logger.LogError(error);
+                // load the data and set the local cache
+                if (stockRatesSimulated.Count == 0)
+                    await LoadSimulatedData();
+
+
+                List<StockRate> db = new List<StockRate>();
+                if(this.currentIndex < AUD_CAD.Count)
+                    db.Add(AUD_CAD[this.currentIndex]);
+                if (this.currentIndex < AUD_JPY.Count)
+                    db.Add(AUD_JPY[this.currentIndex]);
+                if (this.currentIndex < AUD_USD.Count)
+                    db.Add(AUD_USD[this.currentIndex]);
+                if (this.currentIndex < BTC_EUR.Count)
+                    db.Add(BTC_EUR[this.currentIndex]);
+                if (this.currentIndex < BTC_USD.Count)
+                    db.Add(BTC_USD[this.currentIndex]);
+                if (this.currentIndex < CAD_JPY.Count)
+                    db.Add(CAD_JPY[this.currentIndex]);
+                if (this.currentIndex < EUR_AUD.Count)
+                    db.Add(EUR_AUD[this.currentIndex]);
+                if (this.currentIndex < EUR_CAD.Count)
+                    db.Add(EUR_CAD[this.currentIndex]);
+                if (this.currentIndex < EUR_GBP.Count)
+                    db.Add(EUR_GBP[this.currentIndex]);
+                if (this.currentIndex < EUR_JPY.Count)
+                    db.Add(EUR_JPY[this.currentIndex]);
+                if (this.currentIndex < EUR_USD.Count)
+                    db.Add(EUR_USD[this.currentIndex]);
+                if (this.currentIndex < GBP_JPY.Count)
+                    db.Add(GBP_JPY[this.currentIndex]);
+                if (this.currentIndex < GBP_USD.Count)
+                    db.Add(GBP_USD[this.currentIndex]);
+                if (this.currentIndex < USD_CAD.Count)
+                    db.Add(USD_CAD[this.currentIndex]);
+                if (this.currentIndex < USD_JPY.Count)
+                    db.Add(USD_JPY[this.currentIndex]);
+
+                this.currentIndex ++;
+                if (this.currentIndex > this.AUD_CAD.Count)
+                    this.currentIndex = 0;
+
+                if (connection.State == HubConnectionState.Connected)
+                    await connection.SendAsync("SendNewStocks", db);
+
             }
+        }
+
+        private async Task LoadSimulatedData()
+        {
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Clear();
+            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {this.Token}");
+            var response = await client.GetAsync("http://localhost:5000/api/Stocks/simulated");
+            if (response.IsSuccessStatusCode)
+            {
+                var data = await response.Content.ReadAsStringAsync();
+                stockRatesSimulated = Newtonsoft.Json.JsonConvert.DeserializeObject<List<StockRate>>(data);
+                AUD_CAD = stockRatesSimulated.Where(m => m.Currency == "AUD_CAD").OrderBy(m => m.Timestamp).ToList();
+                AUD_JPY = stockRatesSimulated.Where(m => m.Currency == "AUD_JPY").OrderBy(m => m.Timestamp).ToList();
+                AUD_USD = stockRatesSimulated.Where(m => m.Currency == "AUD_USD").OrderBy(m => m.Timestamp).ToList();
+                BTC_EUR = stockRatesSimulated.Where(m => m.Currency == "BTC_EUR").OrderBy(m => m.Timestamp).ToList();
+                BTC_USD = stockRatesSimulated.Where(m => m.Currency == "BTC_USD").OrderBy(m => m.Timestamp).ToList();
+                CAD_JPY = stockRatesSimulated.Where(m => m.Currency == "CAD_JPY").OrderBy(m => m.Timestamp).ToList();
+                EUR_AUD = stockRatesSimulated.Where(m => m.Currency == "EUR_AUD").OrderBy(m => m.Timestamp).ToList();
+                EUR_CAD = stockRatesSimulated.Where(m => m.Currency == "EUR_CAD").OrderBy(m => m.Timestamp).ToList();
+                EUR_GBP = stockRatesSimulated.Where(m => m.Currency == "EUR_GBP").OrderBy(m => m.Timestamp).ToList();
+                EUR_JPY = stockRatesSimulated.Where(m => m.Currency == "EUR_JPY").OrderBy(m => m.Timestamp).ToList();
+                EUR_USD = stockRatesSimulated.Where(m => m.Currency == "EUR_USD").OrderBy(m => m.Timestamp).ToList();
+                GBP_JPY = stockRatesSimulated.Where(m => m.Currency == "GBP_JPY").OrderBy(m => m.Timestamp).ToList();
+                GBP_USD = stockRatesSimulated.Where(m => m.Currency == "GBP_USD").OrderBy(m => m.Timestamp).ToList();
+                USD_CAD = stockRatesSimulated.Where(m => m.Currency == "USD_CAD").OrderBy(m => m.Timestamp).ToList();
+                USD_JPY = stockRatesSimulated.Where(m => m.Currency == "USD_JPY").OrderBy(m => m.Timestamp).ToList();
+            }
+            else
+            {
+                _logger.LogError($"Failed to get stock prices ... {await response.Content.ReadAsStringAsync()}");
+                stockRatesSimulated = new List<StockRate>();
+            }
+
         }
 
 

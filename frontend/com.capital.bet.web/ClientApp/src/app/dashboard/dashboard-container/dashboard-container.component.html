@@ -12,9 +12,11 @@
   <div class="col-12">
 
     <!-- Components & Settings -->
-    <div class="row">
+    <div class="row" [@openClose]="dashboardToolsOpen ? 'open' : 'closed'">
       <div class="col-1">
-
+        <a (click)="toggelTools()" class="float-right" mdbTooltip="Hide Toolbar" placement="bottom">
+          <mdb-icon fas icon="chevron-up"></mdb-icon>
+        </a>
       </div>
       <div class="col-6">
         <span class="dashboard-title">{{ config.dashName }}</span>
@@ -42,7 +44,16 @@
 
       </div>
     </div>
-    <hr/>
+
+
+    <div class="row" [@openClose]="!dashboardToolsOpen ? 'open' : 'closed'">
+      <div class="col-1">
+        <a (click)="toggelTools()" class="float-right" mdbTooltip="Show Toolbar" placement="bottom">
+          <mdb-icon fas icon="chevron-down"></mdb-icon>
+        </a>
+      </div>
+      <div class="col-11">&nbsp;</div>
+    </div>
 
   </div>
 </div>

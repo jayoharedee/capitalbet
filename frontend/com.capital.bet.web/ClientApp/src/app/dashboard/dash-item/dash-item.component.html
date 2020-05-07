@@ -1,5 +1,5 @@
 
-<div class="dash-item-container">
+<!--<div class="dash-item-container">
   <mdb-card>
     <mdb-card-header class="stylish-color">
       <span class="dash-item-title">{{config.title}}</span>
@@ -13,4 +13,30 @@
       <ng-template dash-host></ng-template>
     </mdb-card-body>
   </mdb-card>
+</div>-->
+
+<div class="dash-item-container">
+  <div class="row dash-container">
+    <div class="col-12">
+
+      <div class="row dash-header">
+        <div class="col-12">
+          <span class="dash-item-title">{{config.title}}</span>
+          <div class="float-right" style="width:65px;">
+            <span class="dash-item-edit-links"><a (click)="showSettings()"><mdb-icon fas icon="cog" mdbTooltip="Settings" placement="top"></mdb-icon>&nbsp;&nbsp;</a></span>
+            <span class="dash-item-edit-links"><a (click)="moveItem()"><mdb-icon fas icon="arrows-alt" mdbTooltip="Move" placement="top"></mdb-icon>&nbsp;&nbsp;</a></span>
+            <span class="dash-item-edit-links"><a (click)="removeItem()"><mdb-icon fas icon="times" mdbTooltip="Remove" placement="top"></mdb-icon></a></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row dash-body">
+        <div class="col-12">
+          <ng-template dash-host></ng-template>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
 </div>

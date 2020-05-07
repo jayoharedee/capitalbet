@@ -4,5 +4,49 @@
   </mdb-card-header>
   <mdb-card-body>
 
+    <form [formGroup]="addWidgetGroup">
+
+      <div class="md-form">
+        <input type="text" class="form-control" formControlName="title" mdbInput />
+        <label>Title</label>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <span class="form-title-text">Component</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <select class="browser-default custom-select" formControlName="widgetId">
+            <option [value]="itm.id" *ngFor="let itm of availableItems">{{ itm.title }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="row" style="height:25px;">&nbsp;</div>
+      <div class="row">
+        <div class="col-12">
+          <span class="form-title-text">Position</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <select class="browser-default custom-select" formControlName="zoneSelected">
+            <option [value]="i" *ngFor="let itm of ArrayCount; index as i">Zone {{ i+1 }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row" style="height:25px;">&nbsp;</div>
+
+      <div class="row">
+        <div class="col-12">
+          <button (click)="onAddComponentAction()" mdbBtn type="button" color="dark" block="true" mdbWavesEffect>Add Component</button>
+          <button (click)="modalRef.hide()" mdbBtn type="button" color="dark" outline="true" block="true" mdbWavesEffect>Close</button>
+        </div>
+      </div>
+
+    </form>
+
   </mdb-card-body>
 </mdb-card>

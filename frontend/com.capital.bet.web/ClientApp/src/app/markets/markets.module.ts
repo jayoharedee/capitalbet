@@ -10,7 +10,7 @@ import { DashWalletComponent } from './dashboard/dash-wallet/dash-wallet.compone
 import { DashTradeWidgetComponent } from './dashboard/dash-trade-widget/dash-trade-widget.component';
 import { DashNotifyWidgetComponent } from './dashboard/dash-notify-widget/dash-notify-widget.component';
 import { TradeSettingsComponent } from './dashboard/dash-trade-widget/trade-settings.component';
-import { MDBBootstrapModule } from 'ng-uikit-pro-standard';
+import { MDBBootstrapModule, MDBSpinningPreloader } from 'ng-uikit-pro-standard';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TokenInterceptor } from '../services/token-interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -45,6 +45,7 @@ import { RouterModule } from '@angular/router';
     TradeSettingsComponent
   ],
   providers: [
+    MDBSpinningPreloader,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ]
 })

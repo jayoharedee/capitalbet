@@ -16,7 +16,7 @@ import { AddWidgetDialogComponent } from './dialogs/add-widget-dialog/add-widget
 import { OpenDashboardDialogComponent } from './dialogs/open-dashboard-dialog/open-dashboard-dialog.component';
 import { DashSettingsDialogComponent } from './dialogs/dash-settings-dialog/dash-settings-dialog.component';
 import { SaveDashDialogComponent } from './dialogs/save-dash-dialog/save-dash-dialog.component';
-
+import { TwoColomnRowBottomComponent } from './templates/two-colomn-row-bottom/two-colomn-row-bottom.component';
 
 
 
@@ -31,7 +31,8 @@ import { SaveDashDialogComponent } from './dialogs/save-dash-dialog/save-dash-di
     AddWidgetDialogComponent,
     OpenDashboardDialogComponent,
     DashSettingsDialogComponent,
-    SaveDashDialogComponent
+    SaveDashDialogComponent,
+    TwoColomnRowBottomComponent
   ],
   imports: [
     CommonModule,

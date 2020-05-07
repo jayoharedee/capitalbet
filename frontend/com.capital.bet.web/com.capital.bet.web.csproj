@@ -68,7 +68,10 @@
     <None Remove="ClientApp\src\app\dashboard\models\dash-template.ts" />
     <None Remove="ClientApp\src\app\dashboard\models\dashboard-config.model.ts" />
     <None Remove="ClientApp\src\app\dashboard\models\dashboard-item.model.ts" />
+    <None Remove="ClientApp\src\app\dashboard\models\dashboard-storeage.ts" />
     <None Remove="ClientApp\src\app\dashboard\models\dashboard-template.model.ts" />
+    <None Remove="ClientApp\src\app\dashboard\services\dashboard-local-storage.ts" />
+    <None Remove="ClientApp\src\app\markets\models\active-trade.model.ts" />
     <None Remove="ClientApp\src\app\markets\models\stock-data.ts" />
     <None Remove="ClientApp\src\app\markets\models\trade-settings.model.ts" />
     <None Remove="ClientApp\src\app\models\access-token.model.ts" />
@@ -76,6 +79,7 @@
     <None Remove="ClientApp\src\app\models\application-role.model.ts" />
     <None Remove="ClientApp\src\app\models\application-user.model.ts" />
     <None Remove="ClientApp\src\app\models\permission.model.ts" />
+    <None Remove="ClientApp\src\app\models\stock-rate.mode.ts" />
     <None Remove="ClientApp\src\app\models\stock-type.model.ts" />
     <None Remove="ClientApp\src\app\models\wallet-transaction.model.ts" />
     <None Remove="ClientApp\src\app\pipes\keep-html.pipe.ts" />
@@ -87,10 +91,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\libraries\com.capital.bet.data\com.capital.bet.data\com.capital.bet.data.csproj" />
     <ProjectReference Include="..\..\libraries\com.capital.bet.lib\com.capital.bet.lib.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ClientApp\src\app\dashboard\services\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

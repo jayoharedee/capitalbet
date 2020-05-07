@@ -14,4 +14,5 @@ export class DashboardItem {
   public settingsDialog: Type<any>;
   /** Config Data */
   public config: any;
+
 }

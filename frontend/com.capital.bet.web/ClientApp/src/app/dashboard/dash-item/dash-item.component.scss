@@ -23,3 +23,24 @@
   font-weight: bold;
   color: red;
 }
+
+
+.dash-container {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 5px 5px 8px 5px #888888;
+}
+
+.dash-body {
+  background-color: white;
+}
+
+
+.dash-header {
+  background-color: #4B515D;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  min-height: 35px;
+  padding-top: 10px;
+  padding-bottom: 6px;
+}

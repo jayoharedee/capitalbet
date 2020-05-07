@@ -7,6 +7,11 @@ import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { StockType } from '../../../models/stock-type.model';
 import { StocksService } from '../../../services/stocks.service';
+import { StockRate } from '../../../models/stock-rate.mode';
+import { release } from 'os';
+import { ActiveTrade } from '../../models/active-trade.model';
+import { AccountService } from '../../../services/account.service';
+import { WalletService } from '../../../services/wallet.service';
 HC_stock(Highcharts);
 
 @Component({
@@ -21,69 +26,124 @@ export class DashTradeWidgetComponent implements OnInit, OnDestroy {
   @Input() config: TradeSettings;
 
   stockTypes: StockType[] = [];
-
+  activeTrade: ActiveTrade = null;
+  userBalance: number = 0;
+  potentialEarning: number = 0;
+  earningRate: number = 0;
   betGroup: FormGroup;
 
-  highcharts = Highcharts;
-  chartOptions = {
-    chart: {
-      type: "spline"
+  public chartType: string = 'line';
+
+  public chartDatasets: Array<any> = [
+    { data: [0], label: 'Rate' },
+    { data: [0], label: 'Bid' },
+    { data: [0], label: 'Ask' },
+    { data: [0], label: 'Open' },
+    { data: [0], label: 'Close' },
+    { data: [0], label: 'High' },
+    { data: [0], label: 'Low' }
+  ];
+  public chartLabels: Array<any> = [];
+
+  public chartColors: Array<any> = [
+    {
+      backgroundColor: 'rgba(105, 0, 132, .2)',
+      borderColor: 'rgba(200, 99, 132, .7)',
+      borderWidth: 2,
     },
-    title: {
-      text: "Monthly Average Temperature"
-    },
-    subtitle: {
-      text: "Source: WorldClimate.com"
-    },
-    xAxis: {
-      categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-    },
-    yAxis: {
-      title: {
-        text: "Temperature °C"
-      }
-    },
-    tooltip: {
-      valueSuffix: " °C"
-    },
-    series: [
-      {
-        name: 'Tokyo',
-        data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-      },
-      {
-        name: 'New York',
-        data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
-      },
-      {
-        name: 'Berlin',
-        data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
-      },
-      {
-        name: 'London',
-        data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
-      }
-    ]
+    {
+      backgroundColor: 'rgba(0, 137, 132, .2)',
+      borderColor: 'rgba(0, 10, 130, .7)',
+      borderWidth: 2,
+    }
+  ];
+
+
+  public chartOptions: any = {
+    responsive: true
   };
+  public chartClicked(e: any): void { }
+  public chartHovered(e: any): void { }
+
+  public selectedCurrency: StockType = null;
 
   subs: Subscription[] = [];
+  rate: number[] = [];
+  bid: number[] = [];
+  ask: number[] = [];
+  open: number[] = [];
+  close: number[] = [];
+  high: number[] = [];
+  low: number[] = [];
+  labels: string[] = [];
+
+  get Currency() { return this.betGroup.get('currency'); }
+  get Amount() { return this.betGroup.get('amount'); }
+  get Period() { return this.betGroup.get('period'); }
 
   constructor(private stockSrv: StocksService,
-    private fb: FormBuilder)
-  {
+    private accSrv: AccountService,
+    private walletSrv: WalletService,
+    private fb: FormBuilder) {
     this.betGroup = this.fb.group({
-      currency:[0],
-      amount: [0],
-      period: [2],
+      currency: ['0'],
+      amount: ['0'],
+      period: ['2']
     });
   }
-    
+
 
   ngOnInit(): void {
-    if (this.config != null) {
-      console.log(this.config);
-    }
+
+    this.subs.push(
+      this.Amount.valueChanges.subscribe((value) => {
+        if ((+value) > this.userBalance) {
+          this.Amount.setValue(this.userBalance);
+          this.potentialEarning = ((this.userBalance) * this.earningRate);
+        } else {
+          this.potentialEarning = ((+value) * this.earningRate);
+        }
+      })
+    );
+
+    this.subs.push(
+      this.walletSrv.getUserBalance().subscribe((result: any) => {
+        this.userBalance = result.balance;
+      })
+    );
+
+    this.subs.push(
+      this.stockSrv.StockRatesChanged.subscribe((stocks) => {
+        if (this.config != null && this.config.currency.length > 2) {
+          var data = stocks.filter((a) => {
+            return (a.currency == this.config.currency) ? true : false;
+          });
+
+          this.rate.push(data[0].rate);
+          this.bid.push(data[0].bid);
+          this.ask.push(data[0].ask);
+          this.open.push(data[0].open);
+          this.close.push(data[0].close);
+          this.high.push(data[0].high);
+          this.low.push(data[0].low);
+
+          this.chartDatasets = [
+            { data: this.rate, label: 'Rate' },
+            { data: this.bid, label: 'Bid' },
+            { data: this.ask, label: 'Ask' },
+            { data: this.open, label: 'Open' },
+            { data: this.close, label: 'Close' },
+            { data: this.high, label: 'High' },
+            { data: this.low, label: 'Low' }
+          ]
+          let dt: Date = new Date(data[0].timestamp);
+          this.labels.push(dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds());
+          this.chartLabels = this.labels;
+
+        }
+      })
+    );
+    this.stockSrv.startConnection();
 
     this.subs.push(
       this.stockSrv.getStockTypes().subscribe((stks: StockType[]) => {
@@ -98,6 +158,53 @@ export class DashTradeWidgetComponent implements OnInit, OnDestroy {
     for (let i of this.subs) {
       i.unsubscribe();
     }
+  }
+
+  /** Compute any Period or modifier biases */
+  get computePeriodBias(): number {
+    return 0;
+  }
+
+
+  /**
+   * load the currency (stock) data
+   * @param id Stock / Currecny Id
+   */
+  private loadCurrency(id: string) {
+    this.subs.push(
+      this.stockSrv.getStockById(id).subscribe((stock: StockType) => {
+        this.selectedCurrency = stock;
+        this.earningRate = (stock.payOutRate + this.computePeriodBias);
+        this.potentialEarning = ((+this.Amount.value) * this.earningRate);
+      })
+    );
+  }
+
+  /**
+   *  On Amount Changed
+   * @param value New Amount
+   */
+  onamountChnaged(value) {
+    
+  }
+
+
+  currencyChaged(result) {
+    this.config = {
+      currency: result
+    };
+    this.loadCurrency(result);
+    this.rate = [];
+    this.bid = [];
+    this.ask = [];
+    this.open = [];
+    this.close = [];
+    this.high = [];
+    this.low = [];
+    this.labels = [];
+    this.chartDatasets = [];
+    this.chartLabels = [];
+
   }
 
 }

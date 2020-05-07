@@ -12,16 +12,18 @@ export class DashWalletComponent implements OnInit, OnDestroy{
 
   currentBalance: number = 0;
   transactions: WalletTransaction[] = [];
-
+  transactionsLoading: boolean = false;
   subs: Subscription[] = [];
 
   constructor(private walletSrv: WalletService) { }
     
 
   ngOnInit(): void {
+    this.transactionsLoading = true;
     this.subs.push(
       this.walletSrv.getUserWalletTransactions().subscribe((trs: WalletTransaction[]) => {
         this.transactions = trs;
+        this.transactionsLoading = false;
       })
     );
 

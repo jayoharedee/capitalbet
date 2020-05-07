@@ -7,6 +7,7 @@ using com.capital.bet.data;
 using com.capital.bet.data.Models.Stocks;
 using com.capital.bet.data.Models.Users;
 using com.capital.bet.lib.Stocks;
+using IdentityModel;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -92,6 +93,61 @@ namespace com.capital.bet.web.Controllers
             {
                 _logger.LogError(es, "Failed to get the available stock types");
                 return StatusCode(500, "Failed to get the available stock types");
+            }
+        }
+
+        /// <summary>
+        /// Get Simulated market Data
+        /// </summary>
+        [HttpGet]
+        [Route("simulated")]
+        [ProducesResponseType(typeof(List<StockRate>), StatusCodes.Status200OK)]
+        public IActionResult GetSimulatedData()
+        {
+            try
+            {
+                List<StockRate> rates = new List<StockRate>();
+                var result  = _dbManager.StockTicks.GetAll().OrderBy(m => m.TimeStamp);
+                foreach(var itm in result)
+                {
+                    StockRate r = new StockRate()
+                    {
+                        Ask = itm.Ask,
+                        Bid = itm.Bid,
+                        Close = itm.Close,
+                        Currency = itm.StockId,
+                        High = itm.High,
+                        Low = itm.Low,
+                        Open = itm.Low,
+                        Rate = itm.Rate,
+                        Timestamp = itm.TimeStamp.ToEpochTime()
+                    };
+                    rates.Add(r);
+                }
+                return Ok(rates);
+            }catch(Exception es)
+            {
+                _logger.LogError(es, "Failed to get simulated data");
+                return StatusCode(500, "Failed to get simulated data");
+            }
+        }
+
+        /// <summary>
+        /// Get Stock By Id
+        /// </summary>
+        /// <param name="id">Stock Id</param>
+        [HttpGet]
+        [Route("stock/{id}")]
+        [ProducesResponseType(typeof(Stock), StatusCodes.Status200OK)]
+        public IActionResult GetStockById(string id)
+        {
+            try
+            {
+                return Ok(_dbManager.Stocks.Get(id));
+            }catch(Exception es)
+            {
+                _logger.LogError(es, "");
+                return StatusCode(500, "");
             }
         }
 
