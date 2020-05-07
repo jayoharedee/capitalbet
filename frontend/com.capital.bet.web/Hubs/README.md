@@ -27,9 +27,9 @@ private _connection: signalR.HubConnection;
 
 
 #### Methods
-SendNewStocks - Send a list of pulled stocks to all connected clients List<StockRate> 
+**SendNewStocks** - Send a list of pulled stocks to all connected clients List<StockRate> 
   
-AddStockSentiment - When a user starts a trade a packet with teh trade inromaiton is stored by the service to determine tradder sentiment for a period. 
+**AddStockTrade** - When a user starts a trade a packet with the trade informaiton is stored by the service to determine tradder sentiment for a period and store the trade inforamtion. 
 
 #### Callbacks
 'stocks' - callback used to receive new stock data
