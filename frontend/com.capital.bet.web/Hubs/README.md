@@ -44,4 +44,11 @@ this._connection.on('stocks', (data: StockRate[]) => {
 
 'sentiments' - callback used to update the currency trading sentiment data
 
+```typescript
+this._connection.on('stocks', (data: CurrencySentiment[]) => {
+      // do something with stock data
+    });
+```
+
+
 
