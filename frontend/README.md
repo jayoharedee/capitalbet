@@ -11,5 +11,8 @@ Using the command line type **dotnet watch run** to start the development server
  To View the swagger API interface navigate your browser to **http://localhost:5000/swagger/**
 
 
+## Dashboard Component
+https://github.com/jayoharedee/capitalbet/tree/master/frontend/com.capital.bet.web/ClientApp/src/app/dashboard
+
 
 
