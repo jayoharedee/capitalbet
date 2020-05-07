@@ -42,11 +42,17 @@ this._connection.on('stocks', (data: StockRate[]) => {
 
 'stock_error' - callback used to capture hub server errors and request validation errors
 
+```typescript
+this._connection.on('stock_error', (err:HubError) => {
+      // handle errors
+    });
+```
+
 'sentiments' - callback used to update the currency trading sentiment data
 
 ```typescript
-this._connection.on('stocks', (data: CurrencySentiment[]) => {
-      // do something with stock data
+this._connection.on('sentiments', (data: CurrencySentiment[]) => {
+      // do something with sentiment data
     });
 ```
 
