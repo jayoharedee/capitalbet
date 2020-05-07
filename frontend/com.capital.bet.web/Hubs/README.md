@@ -36,7 +36,7 @@ AddStockSentiment - When a user starts a trade a packet with teh trade inromaito
 
 ```typescript
 this._connection.on('stocks', (data: StockRate[]) => {
-      this._stockRateSub.next(data);
+      // do something with stock data
     });
 ```
 
