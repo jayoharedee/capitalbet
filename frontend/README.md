@@ -12,7 +12,7 @@ Using the command line type **dotnet watch run** to start the development server
 
 
 ## Dashboard Component
-https://github.com/jayoharedee/capitalbet/tree/master/frontend/com.capital.bet.web/ClientApp/src/app/dashboard
+[Documentation](https://github.com/jayoharedee/capitalbet/tree/master/frontend/com.capital.bet.web/ClientApp/src/app/dashboard)
 
 
 
