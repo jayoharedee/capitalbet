@@ -20,3 +20,7 @@ Using the command line type **dotnet watch run** to start the development server
 [Documentation](https://github.com/jayoharedee/capitalbet/tree/master/frontend/com.capital.bet.web/Hubs)
 
 
+## External Libraries
+
+#### MDB Bootstrap UI
+[Documentation](https://mdbootstrap.com/docs/angular/)
