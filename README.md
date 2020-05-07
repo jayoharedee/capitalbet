@@ -9,3 +9,12 @@ The application can be run locally in development mode by opening a console in t
 Using the command line type **dotnet watch run** to start the development server and open your browser to **http://localhost:5000**
  
  To View the swagger API interface navigate your browser to **http://localhost:5000/swagger/**
+
+## Running Simulated Services
+[Documentation](https://github.com/jayoharedee/capitalbet/tree/master/backend)
+
+## Dashboard Component
+[Documentation](https://github.com/jayoharedee/capitalbet/tree/master/frontend/com.capital.bet.web/ClientApp/src/app/dashboard)
+
+
+
