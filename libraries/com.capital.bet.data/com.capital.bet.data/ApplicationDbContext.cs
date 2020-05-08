@@ -83,12 +83,6 @@ namespace com.capital.bet.data
                 .OnDelete(DeleteBehavior.NoAction);
 
             builder.Entity<Option>()
-                .HasOne<ApplicationUser>(m => m.User)
-                .WithMany(m => m.Options)
-                .HasForeignKey(m => m.UserId)
-                .OnDelete(DeleteBehavior.NoAction);
-
-            builder.Entity<Option>()
                 .HasOne<Stock>(m => m.Stock)
                 .WithMany(m => m.Options)
                 .HasForeignKey(m => m.StockId)

@@ -28,9 +28,8 @@ namespace com.capital.bet.data.Models.Tranactions
         /// User Account
         /// </summary>
         [Required]
-        public string UserId { get; set; }
-        [JsonIgnore]
-        public virtual ApplicationUser User { get; set; }
+        [StringLength(256, MinimumLength = 1)]
+        public string Username { get; set; }
         /// <summary>
         /// Stock Id
         /// </summary>

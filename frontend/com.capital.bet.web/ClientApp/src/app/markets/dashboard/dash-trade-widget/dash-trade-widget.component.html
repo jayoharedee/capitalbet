@@ -6,7 +6,7 @@
           <label class="dash-form-label float-right">Currency</label>
         </div>
         <div class="col-6">
-          <select class="browser-default custom-select" (change)="currencyChaged($event.target.value)" formControlName="currency">
+          <select class="browser-default custom-select" (change)="currencyChaged($event.target.value)" formControlName="currency" [class.disabled]="disableTadeUi">
             <option [value]="itm.stockId" *ngFor="let itm of stockTypes">{{ itm.name }}</option>
           </select>
         </div>
@@ -19,7 +19,7 @@
           <label class="dash-form-label float-right">Period</label>
         </div>
         <div class="col-6">
-          <select class="browser-default custom-select" fromControlName="period">
+          <select class="browser-default custom-select" fromControlName="period" [class.disabled]="disableTadeUi">
             <option value="1">2 Min</option>
             <option value="1">5 Min</option>
             <option value="1">15 Min</option>
@@ -55,7 +55,7 @@
       <div class="row">
         <div class="col-12">
           <label class="dash-form-label">Amount (<span class="text-info" style="font-size:x-small;">{{ userBalance | currency }}</span>)</label>
-          <input type="number" class="form-control" formControlName="amount" (change)="onamountChnaged($event.target.value)" mdbInput />
+          <input type="number" class="form-control" formControlName="amount"  mdbInput [class.disabled]="disableTadeUi" />
         </div>
       </div>
       <div class="row" style="height:20px;"></div>
@@ -79,8 +79,8 @@
       <!-- Bid Buttons -->
       <div class="row">
         <div class="col-12">
-          <button mdbBtn type="button" color="success" mdbWavesEffect><mdb-icon fas icon="chevron-up" size="lg"></mdb-icon> HIGH</button>
-          <button mdbBtn type="button" color="danger" mdbWavesEffect>LOW <mdb-icon fas icon="chevron-down" size="lg"></mdb-icon></button>
+          <button (click)="makeHighTrade()" mdbBtn type="button" color="success" mdbWavesEffect [class.disabled]="disableTadeUi"><mdb-icon fas icon="chevron-up" size="lg"></mdb-icon> HIGH</button>
+          <button (click)="makeLowTrade()" mdbBtn type="button" color="danger" mdbWavesEffect [class.disabled]="disableTadeUi">LOW <mdb-icon fas icon="chevron-down" size="lg"></mdb-icon></button>
         </div>
       </div>
 

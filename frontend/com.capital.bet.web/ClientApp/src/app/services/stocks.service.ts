@@ -4,6 +4,8 @@ import { ConfigService } from './config.service';
 import * as signalR from "@aspnet/signalr";
 import { StockRate } from '../models/stock-rate.mode';
 import { Subject, Observable } from 'rxjs';
+import { AuthService } from './auth.service';
+import { StockTradeRequest } from '../models/stock-trade-request.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +25,7 @@ export class StocksService {
   }
 
   constructor(private http: HttpClient,
+    private auth: AuthService,
     private config: ConfigService) {
 
   }
@@ -30,8 +33,10 @@ export class StocksService {
   /** Connect to the stock hub service */
   public startConnection() {
     if (!this._isConnected) {
+
+
       this._connection = new signalR.HubConnectionBuilder()
-        .withUrl('http://localhost:5000/stocks')
+        .withUrl('http://localhost:5000/stocks', { accessTokenFactory: () => this.auth.AccessToken })
         .build();
 
       this._connection.start()
@@ -77,5 +82,14 @@ export class StocksService {
     return this.http.get(url);
   }
 
+  /**
+   * Add a Trade to the system
+   * @param trade Trade request
+   */
+  public sendTradeRequest(trade: StockTradeRequest): Promise<any> {
+    if (this._isConnected)
+      return this._connection.invoke('AddStockTrade', trade);
+    throw Error('not connected to server ...');
+  }
 
 }

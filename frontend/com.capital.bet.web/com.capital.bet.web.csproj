@@ -78,8 +78,12 @@
     <None Remove="ClientApp\src\app\models\account-type.model.ts" />
     <None Remove="ClientApp\src\app\models\application-role.model.ts" />
     <None Remove="ClientApp\src\app\models\application-user.model.ts" />
+    <None Remove="ClientApp\src\app\models\currency-sentiment.model.ts" />
+    <None Remove="ClientApp\src\app\models\error-dialog-config.model.ts" />
+    <None Remove="ClientApp\src\app\models\hub-error.model.ts" />
     <None Remove="ClientApp\src\app\models\permission.model.ts" />
     <None Remove="ClientApp\src\app\models\stock-rate.mode.ts" />
+    <None Remove="ClientApp\src\app\models\stock-trade-request.model.ts" />
     <None Remove="ClientApp\src\app\models\stock-type.model.ts" />
     <None Remove="ClientApp\src\app\models\wallet-transaction.model.ts" />
     <None Remove="ClientApp\src\app\pipes\keep-html.pipe.ts" />

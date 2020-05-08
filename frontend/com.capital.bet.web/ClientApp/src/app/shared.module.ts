@@ -15,6 +15,8 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { LoginFormComponent } from './shared/login-form/login-form.component';
 import { EscapeHtmlPipe } from './pipes/keep-html.pipe';
 import { StocksService } from './services/stocks.service';
+import { ErrorDialogComponent } from './shared/error-dialog/error-dialog.component';
+import { ErrorDialogService } from './services/error-dialog.service';
 
 
 
@@ -24,7 +26,8 @@ import { StocksService } from './services/stocks.service';
     PathNotFoundComponent,
     NavMenuComponent,
     FooterComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    ErrorDialogComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +42,8 @@ import { StocksService } from './services/stocks.service';
     LoginFormComponent
   ],
   entryComponents: [
-    LoginFormComponent
+    LoginFormComponent,
+    ErrorDialogComponent
   ]
 })
 export class SharedModule {
@@ -50,6 +54,7 @@ export class SharedModule {
         AuthService,
         ConfigService,
         AccountService,
+        ErrorDialogService,
         LocalStorageService,
         AuthGuardService,
         StocksService,

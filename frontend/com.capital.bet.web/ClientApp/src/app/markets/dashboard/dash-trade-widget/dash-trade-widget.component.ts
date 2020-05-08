@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ViewEncapsulation, OnDestroy } from '@angular
 import { TradeSettings } from '../../models/trade-settings.model';
 import * as Highcharts from 'highcharts';
 import HC_stock from 'highcharts/modules/stock';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { StockType } from '../../../models/stock-type.model';
@@ -12,6 +12,8 @@ import { release } from 'os';
 import { ActiveTrade } from '../../models/active-trade.model';
 import { AccountService } from '../../../services/account.service';
 import { WalletService } from '../../../services/wallet.service';
+import { StockTradeRequest } from '../../../models/stock-trade-request.model';
+import { ErrorDialogService } from '../../../services/error-dialog.service';
 HC_stock(Highcharts);
 
 @Component({
@@ -24,6 +26,9 @@ export class DashTradeWidgetComponent implements OnInit, OnDestroy {
 
 
   @Input() config: TradeSettings;
+
+  disableTadeUi: boolean = false;
+  tradeCounter: number = 0;
 
   stockTypes: StockType[] = [];
   activeTrade: ActiveTrade = null;
@@ -84,11 +89,12 @@ export class DashTradeWidgetComponent implements OnInit, OnDestroy {
   constructor(private stockSrv: StocksService,
     private accSrv: AccountService,
     private walletSrv: WalletService,
+    private errSrv: ErrorDialogService,
     private fb: FormBuilder) {
     this.betGroup = this.fb.group({
-      currency: ['0'],
-      amount: ['0'],
-      period: ['2']
+      currency: ['0', [Validators.required]],
+      amount: ['0', [Validators.required, Validators.min(10), Validators.max(10000)]],
+      period: ['2', [Validators.required]]
     });
   }
 
@@ -151,6 +157,20 @@ export class DashTradeWidgetComponent implements OnInit, OnDestroy {
       })
     );
 
+
+    this.subs.push(
+      this.errSrv.cancelButtonClicked.subscribe(() => {
+        this.errSrv.hide();
+      })
+    );
+
+    this.subs.push(
+      this.errSrv.okButtonClicked.subscribe(() => {
+        console.log("Ok 3");
+        this.errSrv.hide();
+      })
+    );
+
   }
 
 
@@ -168,7 +188,7 @@ export class DashTradeWidgetComponent implements OnInit, OnDestroy {
 
   /**
    * load the currency (stock) data
-   * @param id Stock / Currecny Id
+   * @param id Stock / Currency Id
    */
   private loadCurrency(id: string) {
     this.subs.push(
@@ -179,15 +199,6 @@ export class DashTradeWidgetComponent implements OnInit, OnDestroy {
       })
     );
   }
-
-  /**
-   *  On Amount Changed
-   * @param value New Amount
-   */
-  onamountChnaged(value) {
-    
-  }
-
 
   currencyChaged(result) {
     this.config = {
@@ -204,6 +215,40 @@ export class DashTradeWidgetComponent implements OnInit, OnDestroy {
     this.labels = [];
     this.chartDatasets = [];
     this.chartLabels = [];
+
+  }
+
+
+  makeHighTrade() {
+    if (this.betGroup.valid) {
+      let request: StockTradeRequest = {
+        requestDate: new Date(),
+        amount: +this.Amount.value,
+        currency: this.Currency.value,
+        isHigh: true,
+        period: +this.Period.value
+      };
+      this.stockSrv.sendTradeRequest(request).then(() => {
+
+      }).catch((err) => {
+        this.errSrv.showError({
+          title: 'Failed to place Trade',
+          body: 'The requested trade could not be placed by the system. Please try your request again later ...',
+          okButtonText: 'Ok',
+          closeButtonText:'Close'
+        });
+      });
+    } else {
+      this.errSrv.showError({
+        title: 'Failed to place trade!',
+        body: 'one or more required fields were not present in your request. Check your trade data and try again ...',
+        okButtonText: 'Ok',
+        closeButtonText: 'Close'
+      });
+    }
+  }
+
+  makeLowTrade() {
 
   }
 

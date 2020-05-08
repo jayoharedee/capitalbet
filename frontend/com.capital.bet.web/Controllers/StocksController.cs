@@ -5,14 +5,18 @@ using System.Net;
 using System.Threading.Tasks;
 using com.capital.bet.data;
 using com.capital.bet.data.Models.Stocks;
+using com.capital.bet.data.Models.Tranactions;
 using com.capital.bet.data.Models.Users;
 using com.capital.bet.lib.Stocks;
+using com.capital.bet.web.Hubs;
+using com.capital.bet.web.Models;
 using IdentityModel;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 
 namespace com.capital.bet.web.Controllers
@@ -26,14 +30,18 @@ namespace com.capital.bet.web.Controllers
         private readonly ILogger _logger;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUnitOfWork _dbManager;
+        private readonly IHubContext<StockHub> _stockHub;
+
 
         public StocksController(ILogger<StocksController> logger,
             UserManager<ApplicationUser> userManager,
+            IHubContext<StockHub> stockHub,
             IUnitOfWork dbManager)
         {
             _dbManager = dbManager;
             _logger = logger;
             _userManager = userManager;
+            _stockHub = stockHub;
         }
 
         /// <summary>
@@ -49,7 +57,7 @@ namespace com.capital.bet.web.Controllers
             try
             {
                 List<StockTick> ticks = new List<StockTick>();
-                foreach(var stk in request.Stocks)
+                foreach (var stk in request.Stocks)
                 {
                     StockTick tick = new StockTick()
                     {
@@ -59,7 +67,7 @@ namespace com.capital.bet.web.Controllers
                         Ask = stk.Ask,
                         Bid = stk.Bid,
                         Close = stk.Close,
-                        High=  stk.High,
+                        High = stk.High,
                         Low = stk.Low,
                         Open = stk.Open
                     };
@@ -69,7 +77,8 @@ namespace com.capital.bet.web.Controllers
                 _dbManager.StockTicks.AddRange(ticks);
                 _dbManager.SaveChanges();
                 return Ok(ticks);
-            }catch(Exception es)
+            }
+            catch (Exception es)
             {
                 _logger.LogError(es, "Failed to add the requested stock records to the system ...");
                 return StatusCode(500, "Failed to add the requested stock records to the system ...");
@@ -87,9 +96,10 @@ namespace com.capital.bet.web.Controllers
         {
             try
             {
-                List<Stock> stocks = _dbManager.Stocks.GetAll().Where(m=>m.Enabled).OrderBy(m => m.Name).ToList();
+                List<Stock> stocks = _dbManager.Stocks.GetAll().Where(m => m.Enabled).OrderBy(m => m.Name).ToList();
                 return Ok(stocks);
-            }catch(Exception es)
+            }
+            catch (Exception es)
             {
                 _logger.LogError(es, "Failed to get the available stock types");
                 return StatusCode(500, "Failed to get the available stock types");
@@ -107,8 +117,8 @@ namespace com.capital.bet.web.Controllers
             try
             {
                 List<StockRate> rates = new List<StockRate>();
-                var result  = _dbManager.StockTicks.GetAll().OrderBy(m => m.TimeStamp);
-                foreach(var itm in result)
+                var result = _dbManager.StockTicks.GetAll().OrderBy(m => m.TimeStamp);
+                foreach (var itm in result)
                 {
                     StockRate r = new StockRate()
                     {
@@ -125,7 +135,8 @@ namespace com.capital.bet.web.Controllers
                     rates.Add(r);
                 }
                 return Ok(rates);
-            }catch(Exception es)
+            }
+            catch (Exception es)
             {
                 _logger.LogError(es, "Failed to get simulated data");
                 return StatusCode(500, "Failed to get simulated data");
@@ -144,7 +155,8 @@ namespace com.capital.bet.web.Controllers
             try
             {
                 return Ok(_dbManager.Stocks.Get(id));
-            }catch(Exception es)
+            }
+            catch (Exception es)
             {
                 _logger.LogError(es, "");
                 return StatusCode(500, "");

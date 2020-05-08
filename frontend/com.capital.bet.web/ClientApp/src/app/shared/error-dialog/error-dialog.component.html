@@ -1,0 +1,18 @@
+<mdb-card>
+  <mdb-card-header class="stylish-color">
+    <span class="error-title">{{errorTitle}}</span>
+  </mdb-card-header>
+  <mdb-card-body>
+    <div class="row">
+      <div class="col-12">
+        {{errorMessage}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <button (cllick)="okClicked()" mdbBtn type="button" color="dark" block="true" mdbWavesEffect>{{ okButtonText }}</button>
+        <button (click)="closeClicked()" mdbBtn type="button" color="dark" outline="true" block="true" mdbWavesEffect>{{ closeButtonText }}</button>
+      </div>
+    </div>
+  </mdb-card-body>
+</mdb-card>
