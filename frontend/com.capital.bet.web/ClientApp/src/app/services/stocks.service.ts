@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ConfigService } from './config.service';
 import * as signalR from "@aspnet/signalr";
-import { StockRate } from '../models/stock-rate.mode';
+import { StockRate } from '../models/stock-rate.model';
 import { Subject, Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { StockTradeRequest } from '../models/stock-trade-request.model';

@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { StockType } from '../../../models/stock-type.model';
 import { StocksService } from '../../../services/stocks.service';
-import { StockRate } from '../../../models/stock-rate.mode';
+import { StockRate } from '../../../models/stock-rate.model';
 import { release } from 'os';
 import { ActiveTrade } from '../../models/active-trade.model';
 import { AccountService } from '../../../services/account.service';
